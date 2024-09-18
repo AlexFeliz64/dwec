@@ -1,3 +1,5 @@
+/*Alejandro Alonso Serrano*/
+
 const prompt = require('prompt-sync')();
 const number = Math.floor(Math.random() * 1001 + 1);
 let adivinanza = 0;
@@ -9,9 +11,12 @@ while(adivinanza != number && intentos > 0){
     if(adivinanza > 1000 || adivinanza < 1){
         console.log("Tiene que ser entre el 1 y el 1000")
     }
-    else if(adivinanza != number) {
+    else if(adivinanza > number) {
         intentos = intentos - 1;
-        console.log("Número incorrecto, te quedan " + intentos + " intentos");
+        console.log("Número incorrecto, el numero es menor, te quedan " + intentos + " intentos");
+    }else if(adivinanza < number) {
+        intentos = intentos - 1;
+        console.log("Número incorrecto, el numero es mayor, te quedan " + intentos + " intentos");
     }
 }
 
