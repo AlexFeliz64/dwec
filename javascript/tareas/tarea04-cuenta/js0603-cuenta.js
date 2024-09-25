@@ -36,7 +36,7 @@ class cuenta{
     }
 
     retirar(cantidad){
-        if(this.cantidad < 0){
+        if((this.cantidad -= cantidad) < 0){
             this.cantidad = 0;
         } else {
             this.cantidad -= cantidad;
@@ -44,13 +44,20 @@ class cuenta{
     }
 }
 
-const cuentaAntonio = new cuenta("Antonio", 500);
+//Crear la cuenta
+const cuentaAntonio = new cuenta("Antonio", 100);
 
 //Muestra el nombre y la cantidad de la cuenta
-console.log(cuentaAntonio.toString())
+console.log(cuentaAntonio.toString());
 
-cuentaAntonio.ingresar(300)
-console.log(cuentaAntonio.toString())
+cuentaAntonio.ingresar(10);
+console.log(cuentaAntonio.toString());
 
-cuentaAntonio.retirar(100)
-console.log(cuentaAntonio.toString())
+cuentaAntonio.retirar(50);
+console.log(cuentaAntonio.toString());
+
+cuentaAntonio.ingresar(15);
+console.log(cuentaAntonio.toString());
+
+cuentaAntonio.retirar(100);
+console.log(cuentaAntonio.toString());
