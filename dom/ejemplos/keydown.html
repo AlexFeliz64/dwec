@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang=es>
+    <head>
+        <!-- La codificación. Considéralo una buena práctica -->
+        <meta charset=utf-8>
+
+        <!-- Información adicional para buscadores y navegadores -->
+        <meta name="author" content="Nombre del autor">
+        <meta name="description" content="Ejemplo de onload">
+
+        <!-- Título de la página -->
+        <title>Ejemplo de onload</title>
+        
+        <!-- Carga el script en diferido -->
+        <script src="keydown.js" defer></script>        
+    </head>
+
+    <!-- Evento onload nos permite llevar a cabo acciones cuando todo el documento ha terminado
+        de cargar. Es necesario asignarlo aquí. Si asignamos el evento window.onload no se 
+        invocará a este gestor de evento.
+      -->
+    <body onload="console.log('html body onload')">                                    
+        <h1>Prueba onkeydown</h1>
+        <p>Este script permite introducir por teclado las teclas que queramos en el 
+            campo de texto 1 y serán replicadas en el campo 2.
+
+        <form id="frm">
+            <input type="text" name="texto1">
+            <input type="text" name="texto2">
+        </form>
+    </body>   
+</html>

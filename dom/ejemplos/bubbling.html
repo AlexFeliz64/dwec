@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=es>
+    <head>
+        <!-- La codificación. Considéralo una buena práctica -->
+        <meta charset=utf-8>
+
+        <!-- Información adicional para buscadores y navegadores -->
+        <meta name="author" content="Nombre del autor">
+        <meta name="description" content="Ejemplo de onload">
+
+        <!-- Título de la página -->
+        <title>Ejemplo de onmouseover</title>
+        
+        <!-- Carga el script en diferido -->
+        <script src="bubbling.js" defer></script>        
+    </head>
+
+    <body>                                    
+        <h1>Prueba onmouseclick</h1>
+        <p>Pincha sobre el cuadrado para obtener las coordenadas
+
+            <div id="area1" style="background-color: red; width: 300px; height: 300px; padding: 20px;">
+
+                <div id="area2" style="background-color: blue; width: 200px; height: 200px;"></div>
+            </div>
+
+            <ul>
+                <li>X : <span id="x">0</span></li>
+                <li>Y : <span id="y">0</span></li>
+            </ul>
+
+    </body>   
+</html>

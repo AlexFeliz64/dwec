@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom0101</title>
+    <style>
+        .botoncolor {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 16px;
+        }
+
+
+        #campo {
+            width: 20%;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambio de color del campo de texto</h1>
+
+    <button id="holaButton" class="botoncolor">Hola</button>
+    <button id="caracolaButton" class="botoncolor">Caracola</button>
+    <button id="adiosButton" class="botoncolor">Adios</button>
+
+    <input type="text" id="campo">
+
+    <script>
+        // Obtener elementos por ID
+        const holaButton = document.getElementById('holaButton');
+        const caracolaButton = document.getElementById('caracolaButton');
+        const adiosButton = document.getElementById('adiosButton');
+        const campo = document.getElementById('campo');
+
+        // Asignar eventos
+        holaButton.addEventListener('click', ()=> {
+            campo.style.backgroundColor = 'hola';
+        });
+
+        caracolaButton.addEventListener('click', ()=> {
+            campo.style.backgroundColor = 'caracola';
+        });
+
+        adiosButton.addEventListener('click', ()=> {
+            campo.style.backgroundColor = 'adios';
+        });
+    </script>
+
+</body>
+</html>
