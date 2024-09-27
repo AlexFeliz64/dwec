@@ -6,7 +6,7 @@
 const read = require('prompt-sync')();
 
 // Lee las iniciales. Esto hará que el resultado sea diferente para cada alumno.
-const iniciales = read("¿Cuáles son tus iniciales?");
+const iniciales = "AAS";
 
 // Convierte las iniciales en un valor numérico al azar que depende de las iniciales.
 let id_alumno = 1n;
@@ -92,7 +92,7 @@ console.log("RETO 4: " + c);
 let s1 = "" + Math.random()+"--"+Math.random()+"--"+Math.random();
 let ps = (Math.random()*s1.length).toFixed();
 
-let ch = "0";
+let ch = s1[ps];
 if(ch !== s1[ps])
     throw new "RETO 5 No superado";
 console.log("RETO 5: " + ch);
