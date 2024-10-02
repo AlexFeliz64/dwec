@@ -4,31 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dom0101</title>
-    <style>
-        .botoncolor {
-            padding: 10px;
-            margin: 10px;
-            border: none;
-            color: rgb(0, 0, 0);
-            font-size: 16px;
-        }
-
-
-        #campo {
-            width: 20%;
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <script src=""></script>
 </head>
 <body>
-    <h1>Cambio de color del campo de texto</h1>
-
     <button id="holaButton" class="botoncolor">Hola</button>
     <button id="caracolaButton" class="botoncolor">Caracola</button>
     <button id="adiosButton" class="botoncolor">Adios</button>
 
-    <input type="text" id="campo">
+    <p id="campo">Texto inicial: </p>
 
     <script>
         // Obtener elementos por ID
@@ -37,17 +20,22 @@
         const adiosButton = document.getElementById('adiosButton');
         const campo = document.getElementById('campo');
 
+        // Función para concatenar texto
+        const agregarTexto = (texto) => {
+            campo.textContent += ' ' + texto;
+        };
+
         // Asignar eventos
-        holaButton.addEventListener('click', ()=> {
-            campo.style.backgroundColor = 'hola';
+        holaButton.addEventListener('click', () => {
+            agregarTexto('Hola');
         });
 
-        caracolaButton.addEventListener('click', ()=> {
-            campo.style.backgroundColor = 'caracola';
+        caracolaButton.addEventListener('click', () => {
+            agregarTexto('Caracola');
         });
 
-        adiosButton.addEventListener('click', ()=> {
-            campo.style.backgroundColor = 'adios';
+        adiosButton.addEventListener('click', () => {
+            agregarTexto('Adios');
         });
     </script>
 
