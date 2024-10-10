@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang=es>
+    <head>
+        <!-- La codificación. Considéralo una buena práctica -->
+        <meta charset=utf-8>
+
+        <!-- Información adicional para buscadores y navegadores -->
+        <meta name="author" content="Nombre del autor">
+        <meta name="description" content="Ejemplo de onload">
+
+        <!-- Título de la página -->
+        <title>Ejemplo de onload</title>
+        
+        <!-- Carga el script en diferido -->
+        <script src="onload.js" defer></script>        
+    </head>
+
+    <!-- Evento onload nos permite llevar a cabo acciones cuando todo el documento ha terminado
+        de cargar. Es necesario asignarlo aquí. Si asignamos el evento window.onload no se 
+        invocará a este gestor de evento.
+      -->
+    <body onload="console.log('html body onload')">                                    
+        <h1>Hola caracola</h1>
+
+        <!-- Pongo una imagen. Asignaré un evento para controlar cuando la imagen se ha cargado -->
+        <img id="imagen" src="https://grisounav.files.wordpress.com/2021/05/web.jpg">
+    </body>   
+</html>

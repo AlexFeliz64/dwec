@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Frutas</title>
+    <script src="dom0106.js" defer></script>
+</head>
+<body>
+    <h1>Lista de Frutas</h1>
+
+    <table border="1" id="tablaFrutas">
+        
+        <tr>
+            <th>Fruta</th>
+            <th>Color</th>
+        </tr>
+        <tbody>
+            <tr>
+                <td>Pera</td>
+                <td>Verde</td>
+            </tr>
+            <tr>
+                <td>Manzana</td>
+                <td>Roja</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Añadir nueva fruta</h3>
+    <label for="nombreFruta">Fruta:</label>
+    <input type="text" id="nombreFruta" placeholder="Nombre de la fruta"><br>
+    
+    <label for="colorFruta">Color:</label>
+    <input type="text" id="colorFruta" placeholder="Color de la fruta"><br>
+    
+    <button onclick="agregarFruta()">Añadir Fruta</button>
+
+</body>
+</html>

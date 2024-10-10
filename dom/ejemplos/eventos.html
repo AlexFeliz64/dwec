@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=es>
+    <head>
+        <!-- La codificación. Considéralo una buena práctica -->
+        <meta charset=utf-8>
+
+        <!-- Información adicional para buscadores y navegadores -->
+        <meta name="author" content="Nombre del autor">
+        <meta name="description" content="Estructura de un documento HTML5">
+
+        <!-- Título de la página -->
+        <title>Estructura básica de un documento HTML</title>        
+    </head>
+    <body>
+        <!-- Aquí iría la descripción del documento -->
+        <button id="bSaludar1" onclick="saluda();">Mi botón 1</button>
+        <button id="bSaludar2">Mi botón 2</button>
+
+        <!-- Recuerda. Se tiene que poner al final. No hay src. Se ejecuta cuando se encuentra -->
+        <script>
+            function saluda() {
+                window.alert("Hola mundo");
+            }
+        
+            // Asigna el gestor de evento de forma programática
+            let bSaludar = document.getElementById('bSaludar2');   
+            bSaludar.addEventListener("click", saluda);        
+        </script>
+
+    </body>
+</html>
