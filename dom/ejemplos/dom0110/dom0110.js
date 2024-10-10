@@ -1,13 +1,12 @@
 "use sctric"
 
-
-//Inicizalización
+//-----------------------------------
+// Inicizalización
+//-----------------------------------
 $(document).ready(() => {
 
     $(["name=numero"]).on("blur",onNumeroblur);
     $(["name=nombre"]).on("blur",onNombreblur);
-
-
 
 });
 
