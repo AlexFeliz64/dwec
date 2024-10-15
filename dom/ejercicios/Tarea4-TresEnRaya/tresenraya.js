@@ -4,20 +4,24 @@ let tablero = [0, 0, 0, 0, 0, 0, 0, 0, 0];  // Tablero inicial vacío
 let jugador = "X"; 
 let puntuacionJX = 0;  // Puntuación de jugador X
 let puntuacionJO = 0;  // Puntuación de jugador O
-let contarcelda=0;
+let contarcelda=0; // Contador de celdas ocupadas
 
-//
-let puntosJXElement;
-let puntosJOElement;
+let puntosJX;
+let puntosJO;
+let turnoJ;
 
 //---------------------------
 // Inicialización
 //---------------------------
 window.addEventListener("load", () => {
-    //Asignar puntos
-    puntosJXElement = document.getElementById("puntuacionJX");
-    puntosJOElement = document.getElementById("puntuacionJO");
+    // Asignar puntos
+    puntosJX = document.getElementById("puntuacionJX");
+    puntosJO = document.getElementById("puntuacionJO");
 
+    // Identificar el turno 
+    turnoJ = document.getElementById("turnoJugador")
+    turnoJ.innerText = jugador;
+    
     // Añadir eventos de clic a todas las celdas
     for (let i = 0; i < 9; i++) {
         let celda = document.getElementById("celda" + i);
@@ -40,18 +44,25 @@ function seleccioncelda(ncelda) {
             // Actualizar la puntuación según el jugador
             if (jugador === "X") {
                 puntuacionJX++;
-                puntosJXElement.innerText = puntuacionJX;  // Actualizar el marcador en la interfaz
+                puntosJX.innerText = puntuacionJX;  // Actualizar el marcador en la interfaz
             } else if (jugador === "O") {
                 puntuacionJO++;
-                puntosJOElement.innerText = puntuacionJO;  // Actualizar el marcador en la interfaz
+                puntosJO.innerText = puntuacionJO;  // Actualizar el marcador en la interfaz
             }
 
             reiniciarTablero();
-            return;
+        } else if(!verificarGanador()){
+            contarcelda++
+            if(contarcelda===9){
+            alert("Empate")
+            reiniciarTablero();
+            }
         }
         
         // Cambiar de turno
         jugador = jugador === "X" ? "O" : "X";
+        turnoJ.innerText = jugador;
+        
     }
 }
 
@@ -85,8 +96,8 @@ function verificarGanador() {
     if (tablero[2] !== 0 && tablero[2] === tablero[4] && tablero[4] === tablero[6]) {
         return true; 
     }
-    contarcelda++
-    return false; // No hay ganador
+    
+    return false; 
 }
 
 
@@ -97,5 +108,6 @@ function reiniciarTablero() {
         document.getElementById("celda" + i).innerText = "";  // Limpiar las celdas
     }
     contarcelda=0;
-    jugador = "X";  // El jugador X empieza de nuevo
+    jugador = "O";  // El jugador X empieza de nuevo
+    turnoJ.innerText = jugador;
 }

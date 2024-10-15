@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Bloques</title>
+    <script src="juego2d.js" defer></script>
+    <style>
+        .botones-container {
+            margin: 20px;
+        }
+        #bloque {
+            position: absolute;
+            background-color: pink;
+            display: none; 
+        }
+        .botones-container button {
+            padding: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de Bloques</h1>
+    <div class="botones-container">
+        <button dificultad="facil">Fácil</button>
+        <button dificultad="normal">Normal</button>
+        <button dificultad="dificil">Difícil</button>
+    </div>
+    <div id="areajuego" style="width: 500px; height: 500px; border: 1px solid black; background-color: grey; position: relative;">
+        <div id="bloque"></div>
+    </div>
+    <p>Puntuación: <span id="puntuacion">0</span></p>
+    <p>Tiempo restante: <span id="tiemporestante">0</span> segundos</p>
+</body>
+</html>
