@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script type="module" src="formulario.mjs" defer></script>
+    <script type="module" src="formulario-validaciones.mjs" defer></script>
+    <style>
+        #formulario{
+            display: flex;
+            flex-direction: column;   
+            max-width: 400px;
+        }
+        .error {
+            background-color: #ffdddd;
+        }
+        #mensajeaviso {
+            margin-top: 20px;
+            color: #e21717;
+        }
+    </style>
+</head>
+<body>
+    <form id="formulario">
+        <h3>Datos personales</h3>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" mensaje="Tu nombre completo." required>
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" mensaje="Tus apellidos completos." required>
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" mensaje="Introduce un DNI correcto." required>
+
+        <h3>Cuenta</h3>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" mensaje="Introduce un email correcto, debe contener @." required>
+        <label for="contraseña1">Contraseña:</label>
+        <input type="password" id="contraseña1" name="contraseña1" mensaje="Introduce una contraseña para proteger la cuenta." required>
+        <label for="contraseña2">Confirmar Contraseña:</label>
+        <input type="password" id="contraseña2" name="contraseña2" mensaje="Repite la contraseña anterior." required>
+
+        <div>
+            <button type="submit">Aceptar</button>
+            <button type="reset">Resetear</button>
+        </div>
+    </form>
+
+    <div id="mensajeaviso">
+        <p>Pon el puntero dentro de un campo.</p>
+    </div>
+</body>
+</html>
