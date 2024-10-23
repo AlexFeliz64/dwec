@@ -18,7 +18,8 @@ window.addEventListener('load', () => {
             // Si todo es válido, envía el formulario manualmente
             formulario.submit();
         } else {
-            // Si no, se muestra un mensaje
+            // Si no, se muestra un mensaje y no se envia
+            e.preventDefault();
             alert("El formulario tiene errores.");
         }
     });
@@ -79,6 +80,7 @@ function validarFormulario(formulario) {
     let FormularioValido = true;
     const inputs = formulario.querySelectorAll('input');
 
+    // Comprueba que cada campo sea valido y si hay uno que no es valido da el formulario como false
     for (const input of inputs) {
         const valido = validarCampo(input);
         if (!valido) {
