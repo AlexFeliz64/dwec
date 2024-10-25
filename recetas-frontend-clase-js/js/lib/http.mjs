@@ -7,10 +7,6 @@ export { get };
  * 
  * @param {} url URL del recurso a descargar
  */
-function get(url, onOk) {
-    fetch(url)
-        .then(response => response.json())
-        .then(recetas => {
-            onOk(recetas);
-        });
+function get(url) {
+    return fetch(url);
 }

@@ -1,20 +1,18 @@
 <script src="paginas/recetas.mjs" type="module"></script>
 
 <div id="recetas">
-    <table class="table">
-        <thead>  
-            <tr>  
-                <th scope="col">id</th>
-                <th scope="col">Nombre</th>      
-                <th scope="col">Descripción</th>  
-            </tr>  
+    <table class="table" data-pagination="true" data-page-list="[]">
+        <thead>
+              <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+              </tr>               
         </thead>
         <tbody id="resultado">
 
         </tbody>
     </table>
-    <div id="paginador">
-        
-    </div>
-    
+
+    <div id="paginador"></div>
 </div>
