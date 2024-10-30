@@ -20,6 +20,8 @@ const JSON2HTML_PLANTILLA_TABLA = {
       {'<>': 'th','scope':'row','html': '${id}'},
       {'<>': 'td','html': '${nombre}'},
       {'<>': 'td','html': '${descripcion}'},
+      {'<>': 'td','html': '<button name="bEditar">Editar</button>'},
+      {'<>': 'td','html': '<button name="bEliminar">Borrar</button>'},
     ]
 };
 
@@ -30,6 +32,8 @@ const JSON2HTML_PLANTILLA_TABLA = {
 
 $("#recetas").ready(() => {
 
+    $("bEditar").on("click");
+    $("bEliminar").on("click");
     // Renderiza la tabla
     tabla.renderizar(
         URL_RECETAS, 
@@ -42,6 +46,17 @@ $("#recetas").ready(() => {
         () => tabla.anterior(TBODY_RESULTADO), 
         () => tabla.siguiente(TBODY_RESULTADO)
     );
+    $(document).on('click', 'button[name="bEliminar"]',() =>{
+        const id = $(this).closest('tr').find('th[scope="row"]').text();
+        eliminarReceta(id);
+    });
 });
-
+function eliminarReceta(id) {
+    const response = fetch(`${URL_RECETAS}/${id}`, { method: 'DELETE' });
+    if (response.ok) {
+        console.log(`Receta con ID ${id} eliminada correctamente.`);
+    } else {
+        console.error("Error al eliminar la receta.");
+    }
+}
 

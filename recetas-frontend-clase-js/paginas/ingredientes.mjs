@@ -17,7 +17,6 @@ const JSON2HTML_PLANTILLA_TABLA = {
       '<>': 'tr', 'html': [
       {'<>': 'th', 'scope': 'row', 'html': '${id}'},
       {'<>': 'td', 'html': '${nombre}'},
-      {'<>': 'td', 'html': '${descripcion}'},
       {'<>': 'td', 'html': '${cantidad}'},
     ]
 };
