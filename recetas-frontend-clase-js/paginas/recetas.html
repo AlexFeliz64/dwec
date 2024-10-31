@@ -1,18 +1,57 @@
-<script src="paginas/recetas.mjs" type="module"></script>
+<script type="module">
+    import * as recetas from './paginas/recetas.mjs';
+    recetas.inicializar();
+</script>
 
 <div id="recetas">
-    <table class="table" data-pagination="true" data-page-list="[]">
+
+    <!-- Creo un contenedor que se estira todo el ancho -->
+    <div class="container-fluid m-3">
+        <div class="row justify-content-between">
+    
+        <!-- Filtro -->
+        <div class="col">
+            <div class="row">
+            <div class="col-3">
+                <input id="iFiltro" type="text" class="form-control">
+            </div>
+            <div class="col-1">
+                <button id="btBuscar" type="button" class="btn btn-primary">
+                <i class="bi-search"></i>
+                </button>        
+            </div>
+            </div>
+        </div>  
+    
+        <!-- Para dar de alta nuevas recetas -->
+        <div class="col-1 text-right">
+            <button id="btAnadir" type="button" class="btn btn-success rounded-circle">
+            <i class="bi-person-plus"></i>
+            </button>      
+        </div>  
+        
+        </div>
+    </div>
+  
+    <table class="table table-striped table-hover">
         <thead>
               <tr>
                   <th scope="col">Id</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Descripción</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
               </tr>               
         </thead>
         <tbody id="resultado">
-
+            <!-- Aquí nuestro código va a insertar las recetas -->
         </tbody>
     </table>
 
-    <div id="paginador"></div>
+    <!-- Separador. Lo pongo para que la página quede mejor cuando no hay datos. -->
+    <hr class="mt-2 mb-2 text-secondary"/>
+
+    <div id="paginador">
+        <!-- El paginador se insertará aquí -->
+    </div>
 </div>

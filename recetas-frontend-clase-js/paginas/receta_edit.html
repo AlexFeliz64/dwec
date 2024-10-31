@@ -1,12 +1,18 @@
-<script src="paginas/recetas_edit.mjs" type="module"></script>
+<script type="module">
+    import * as recetasEdit from './paginas/receta_edit.mjs';
+    recetasEdit.inicializar();
+</script>
 
-<div id="recetas_edit">
+<div id="receta_edit">
 
-    <form action="#">
-        <input type="text" name="nombre" class="form-control"><br>
-        <input type="text" name="descripcion" class="form-control">
-        <button id="btnVolver" class="btn-primary">Volver</button>
-        <button id="btnGuardar" class="btn-success">Guardar</button>
-    </form>
+        <form id="formularioRecetas" action="#">
+            
+            <input name="nombre" class="form-control" validacion="val_CadenaNoVacia"/><br>
+            <input name="descripcion" class="form-control" /><br>
+
+            <button id="btnVolver" type="button" class="btn-primary">Volver</button>
+            <button id="btnGuardar" type="submit" class="btn-success">Guardar</button>
+
+        </form>
 
 </div>

@@ -6,7 +6,7 @@ import * as http from '../lib/http.mjs'
 //---------------------------------------------------------
 // Exportaciones
 //---------------------------------------------------------
-export { renderizar, siguiente, anterior, filtrar, recargar };
+export { renderizar, siguiente, anterior };
 
 
 //---------------------------------------------------------
@@ -15,7 +15,6 @@ export { renderizar, siguiente, anterior, filtrar, recargar };
 const PAGINA_INICIAL = 1;
 
 const ATTR_URL_BASE     = 'tabla-url-base';
-const ATTR_FILTRO       = 'tabla-url-filtro';
 const ATTR_PAGINA       = 'tabla-pagina';
 const ATTR_PLANTILLA    = 'tabla-plantilla';
 
@@ -31,15 +30,14 @@ const ATTR_PLANTILLA    = 'tabla-plantilla';
  * @param {*} elementoObjetivo Elemento html donde se va a renderizar la tabla
  * @param {*} plantilla Plantilla a emplear para renderizar la tabla
  */
-function renderizar(url, elementoObjetivo, plantilla, filtro='') {
+function renderizar(url, elementoObjetivo, plantilla) {
    
     // Inicializar nuestro elemento objetivo
     $(elementoObjetivo).attr(ATTR_URL_BASE, url);
-    $(elementoObjetivo).attr(ATTR_FILTRO, filtro);
     $(elementoObjetivo).attr(ATTR_PLANTILLA, JSON.stringify(plantilla));
    
     // Renderiza los datos en la URL
-    renderizarUrl(generarUrlPagina(url, filtro), elementoObjetivo, plantilla);
+    renderizarUrl(generarUrlPagina(url), elementoObjetivo, plantilla);
 }
 
 /**
@@ -68,7 +66,7 @@ function renderizarUrl(url, elementoObjetivo, plantilla, pagina = PAGINA_INICIAL
 function renderizarDatos(datos, elementoObjetivo, plantilla, pagina = PAGINA_INICIAL) {
     
     const html = json2html.render(datos, plantilla);
-    $(elementoObjetivo).html(html);
+    elementoObjetivo.innerHTML = html;
 
     // Asigna la página actual
     $(elementoObjetivo).attr(ATTR_PAGINA, pagina);    
@@ -85,28 +83,14 @@ function renderizarDatos(datos, elementoObjetivo, plantilla, pagina = PAGINA_INI
  * @param {*} urlRecurso dirección del recurso asociado a esta tabla
  * @param {*} numeroPagina 
  */ 
-function generarUrlPagina(urlRecurso, numeroPagina = PAGINA_INICIAL, filtro='') {
-        
-    // Añade la información de paginación
-    urlRecurso = `${urlRecurso}?_page=${numeroPagina}&_limit=${TABLA_REGISTROS_POR_PAGINA}`;
-    
-    // Añade el filtro
-    urlRecurso = (filtro.length == 0)?urlRecurso:`${urlRecurso}&q=${filtro}`;
-    
-    return urlRecurso;
+function generarUrlPagina(urlRecurso, numeroPagina = PAGINA_INICIAL) {
+    return `${urlRecurso}?_page=${numeroPagina}&_limit=${TABLA_REGISTROS_POR_PAGINA}`;
 }
 
 
 //---------------------------------------------------------
 // Funciones para navegar por la tabla
 //---------------------------------------------------------
-
-/**
- * Refresca la página actual
- */
-function recargar(elementoObjetivo) {
-    cambiarPagina(elementoObjetivo);
-}
 
 /**
  * Carga la siguiente página
@@ -128,14 +112,10 @@ function anterior(elementoObjetivo) {
  * @param {*} elementoObjetivo 
  * @param {*} pagina 
  */
-function cambiarPagina(elementoObjetivo, incremento = 0) {
-    
+function cambiarPagina(elementoObjetivo, incremento) {
     // Obtendo la url del recurso
     const urlRecurso = $(elementoObjetivo).attr(ATTR_URL_BASE);
     
-    // Obtiene el filtro si lo hay
-    const filtro = $(elementoObjetivo).attr(ATTR_FILTRO);
-
     // Obtengo el número de página
     const pagina = Number($(elementoObjetivo).attr(ATTR_PAGINA)) + incremento;
     $(elementoObjetivo).attr(ATTR_PAGINA, pagina); 
@@ -144,35 +124,8 @@ function cambiarPagina(elementoObjetivo, incremento = 0) {
     const plantilla = JSON.parse($(elementoObjetivo).attr(ATTR_PLANTILLA));
 
     // Obtengo la url de la página
-    const urlPagina = generarUrlPagina(urlRecurso, pagina, filtro);
+    const urlPagina = generarUrlPagina(urlRecurso, pagina);
 
     // Llamamos a renderizar la tabla
     renderizarUrl(urlPagina, elementoObjetivo, plantilla, pagina);
 }
-
-
-
-//---------------------------------------------------------
-// Funciones para filtrar los datos
-//---------------------------------------------------------
-/**
- * Aplica un filtro a la tabla
- */
-function filtrar(elementoObjetivo, filtro) {
-    
-    // Obtendo la url del recurso
-    let urlRecurso = $(elementoObjetivo).attr(ATTR_URL_BASE);
-
-    // Obtengo la plantilla
-    const plantilla = JSON.parse($(elementoObjetivo).attr(ATTR_PLANTILLA));
-
-    // Almaceno el filtro
-    $(elementoObjetivo).attr(ATTR_FILTRO, filtro);
-
-    // Genero la url asociada al recurso con el filtro aplicado
-    urlRecurso = generarUrlPagina(urlRecurso, PAGINA_INICIAL, filtro);
-
-    // Renderiza la tabla con el filtro
-    renderizarUrl(urlRecurso, elementoObjetivo, plantilla);
-}
-

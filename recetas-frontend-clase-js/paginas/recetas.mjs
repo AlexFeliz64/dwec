@@ -1,18 +1,23 @@
 //--------------------------------------------------------
 // Dependencias del módulo
 //--------------------------------------------------------
+import * as http from '../js/lib/http.mjs';
 import * as tabla from '../js/componentes/tabla.mjs';
 import * as paginador from '../js/componentes/paginador.mjs';
+import * as modal from '../js/componentes/modal.mjs';
+import * as toast from '../js/componentes/toast.mjs';
 
+
+//--------------------------------------------------------
+// Exportaciones 
+//--------------------------------------------------------
+export { inicializar };
 
 
 //--------------------------------------------------------
 // Constantes
 //--------------------------------------------------------
-
-const URL_RECETAS = "http://localhost:3000/recetas"
-
-const TBODY_RESULTADO = document.getElementById("resultado");
+const TBODY_RESULTADO = "#resultado";
 const DIV_PAGINADOR = "#paginador";
 
 const JSON2HTML_PLANTILLA_TABLA = {
@@ -20,8 +25,8 @@ const JSON2HTML_PLANTILLA_TABLA = {
       {'<>': 'th','scope':'row','html': '${id}'},
       {'<>': 'td','html': '${nombre}'},
       {'<>': 'td','html': '${descripcion}'},
-      {'<>': 'td','html': '<button name="bEditar">Editar</button>'},
-      {'<>': 'td','html': '<button name="bEliminar">Borrar</button>'},
+      {'<>':'td','html':'<button name="btEditar" class="btn btn-info bi bi-pencil-fill" value="${id}"></button>'},
+      {'<>':'td','html':'<button name="btEliminar" class="btn btn-danger bi bi-trash-fill" value="${id}"></button>'}
     ]
 };
 
@@ -30,10 +35,16 @@ const JSON2HTML_PLANTILLA_TABLA = {
 // Inicialización de la página de recetas
 //-------------------------------------------------------
 
-$("#recetas").ready(() => {
+function inicializar() {
 
-    $("bEditar").on("click");
-    $("bEliminar").on("click");
+    // Asigna los gestores de eventos del interfaz de usuario
+    $("#btBuscar").on("click", onBotonBuscarClick);
+    $("#btAnadir").on("click", onBotonAñadirClick);
+
+    // Eventos en botones de los registros de la tabla
+    $(TBODY_RESULTADO).on('click', '[name=btEliminar]', onEliminarClick);
+    $(TBODY_RESULTADO).on('click', '[name=btEditar]', onEditarClick);  
+
     // Renderiza la tabla
     tabla.renderizar(
         URL_RECETAS, 
@@ -46,17 +57,64 @@ $("#recetas").ready(() => {
         () => tabla.anterior(TBODY_RESULTADO), 
         () => tabla.siguiente(TBODY_RESULTADO)
     );
-    $(document).on('click', 'button[name="bEliminar"]',() =>{
-        const id = $(this).closest('tr').find('th[scope="row"]').text();
-        eliminarReceta(id);
-    });
-});
-function eliminarReceta(id) {
-    const response = fetch(`${URL_RECETAS}/${id}`, { method: 'DELETE' });
-    if (response.ok) {
-        console.log(`Receta con ID ${id} eliminada correctamente.`);
-    } else {
-        console.error("Error al eliminar la receta.");
-    }
+};
+
+
+//-------------------------------------------------------
+// Gestores de eventos
+//-------------------------------------------------------
+/**
+ * Gestiona los clicks sobre el botón buscar
+ */
+function onBotonBuscarClick() {
+    console.log("buscar");
+    
+    // Obtengo el filtro
+    const filtro = $("#iFiltro").val();
+
+    // Aplico el filtro a la tabla
+    tabla.filtrar(TBODY_RESULTADO, filtro);
 }
 
+
+/**
+ * Evento añadir receta
+ */
+function onBotonAñadirClick() {
+    console.log("añadir");
+
+    appCargar("receta_edit");
+
+//    modal.preguntar("Estás seguro???", () => {
+//        console.log("Has aceptado");
+//    });
+}
+
+/** 
+ * Se va a eliminar un registro 
+ */
+function onEliminarClick(evento) {
+    console.log("Eliminar");
+
+    // Obtengo el identificador de la receta a eliminar
+    const id=evento.target.value;    
+    modal.preguntar(
+        "¿Está seguro de que desea eliminar el registro?", 
+        () => {
+            http.del(URL_RECETAS, id)
+            .then(() => {
+                toast.mostrar("Receta eliminada");
+                tabla.recargar(TBODY_RESULTADO);
+            });
+        }
+    );
+
+    //toast.mostrar("Has eliminado un elemento");
+}
+
+/** 
+ * Se va a editar un registro 
+ */
+function onEditarClick(evento) {
+    console.log("Editar");
+}
