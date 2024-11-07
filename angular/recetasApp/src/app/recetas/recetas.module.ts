@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { RecetasRoutingModule } from './recetas-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LoginComponent
+  ],
   imports: [
 
     // Este módulo ofrece algunas funcionalidades para trabajar con plantillas HTML
