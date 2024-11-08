@@ -7,6 +7,7 @@ import { DashboardComponent } from './Dashboard/pages/dashboard/dashboard.compon
 import { ListadoComponent } from './tasks/pages/listado/listado.component';
 import { EditarComponent } from './tasks/pages/editar/editar.component';
 import { VerComponent } from './tasks/pages/ver/ver.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VerComponent } from './tasks/pages/ver/ver.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
