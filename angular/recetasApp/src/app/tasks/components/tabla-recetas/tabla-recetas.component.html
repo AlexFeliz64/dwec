@@ -1,0 +1,44 @@
+<!-- Aquí está la tabla donde se van a insetar los resultados -->
+<table class="table table-bordered table-striped text-center table-light table-hover align-items-center">
+
+    <!-- Encabezado de la tabla -->
+    <thead class="table text-white bg-primary">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Título</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha Vencimiento</th>
+            <th scope="col">Hora Vencimiento</th>
+            <th scope="col"></th> <!-- Mostrar detalles -->
+            <th scope="col"></th> <!-- Editar -->
+            <th scope="col"></th> <!-- Eliminar tarea -->
+        </tr>
+    </thead>
+    
+    <!-- 
+        Cuerpo de la tabla. Aquí es donde se van a insertar las tareas
+     -->
+    <tbody>
+        <tr *ngFor="let tarea of tareas; let i = index">
+            <td>{{ tarea.id_tarea }}</td>
+            <td>{{ tarea.titulo }}</td>
+            <td>{{ tarea.tipo }}</td>
+            <td>{{ tarea.estado }}</td>
+            <td>{{ tarea.fecha_vencimiento | date }}</td>
+            <td>{{ tarea.hora_vencimiento }}</td>
+            <td>
+                <!-- Enlace a ver la tarea -->
+                <i [routerLink]="['../ver', tarea.id_tarea ]" class="btn btn-success bi bi-eye"></i>
+            </td>                
+            <td>
+                <!-- Enlace a la edición de la tarea -->                                
+                <i [routerLink]="['../editar', tarea.id_tarea ]" class="btn btn-warning bi bi-pencil"></i>
+            </td>    
+            <td>
+                <!-- Eliminar la tarea -->
+                <i (click)="borrarTarea(i)" class="btn btn-danger bi bi-trash"></i>
+            </td>
+        </tr>        
+    </tbody>
+</table>

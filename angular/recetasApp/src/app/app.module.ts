@@ -9,6 +9,7 @@ import { EditarComponent } from './tasks/pages/editar/editar.component';
 import { VerComponent } from './tasks/pages/ver/ver.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './recetas/pages/login/login.component';
+import { TablaRecetasComponent } from './tasks/components/tabla-recetas/tabla-recetas.component';
 
 
 
@@ -18,7 +19,8 @@ import { LoginComponent } from './recetas/pages/login/login.component';
     DashboardComponent,
     ListadoComponent,
     EditarComponent,
-    VerComponent
+    VerComponent,
+    TablaRecetasComponent
   ],
   imports: [
     BrowserModule,

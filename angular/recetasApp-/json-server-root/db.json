@@ -1,0 +1,106 @@
+{
+  "recetas": [
+    {
+      "id": 1,
+      "nombre": "Macarrones con tomate",
+      "descripcion": "Macarrones cocidos con salsa de tomate de bote",
+      "fechaAlta": "01/01/2024",
+      "tiempo": "20",
+      "dificultad": "Fácil",
+      "puntuacion": "3.5"
+    },
+    {
+      "nombre": "Arroz tres delicias",
+      "descripcion": "Arroz cocido y frito con huevo, guisantes, zanahoia y jamón.",
+      "fechaAlta": "16/10/2024",
+      "tiempo": "25",
+      "dificultad": "Medio",
+      "puntuacion": "4.5",
+      "id": 2
+    },
+    {
+      "nombre": "Salchichas",
+      "descripcion": "Salchichas fritas en aceite de oliva",
+      "fechaAlta": "01/01/2024",
+      "tiempo": "2",
+      "dificultad": "Fácil",
+      "puntuacion": "2.5",
+      "id": 3
+    },
+    {
+      "nombre": "Macarrones con tomate",
+      "descripcion": "Macarrones cocidos con salsa de tomate de bote",
+      "fechaAlta": "01/01/2024",
+      "tiempo": "20",
+      "dificultad": "Fácil",
+      "puntuacion": "3.5",
+      "id": 4
+    }
+  ],
+  "pasos_recetas": [
+    {
+      "id": 1,
+      "descripcion": "Hervir los macarrores",
+      "tiempo": "20",
+      "recetaId": 1
+    },
+    {
+      "id": 2,
+      "descripcion": "Escurrir los cacarrones",
+      "tiempo": "1",
+      "recetaId": 1
+    },
+    {
+      "id": 3,
+      "descripcion": "Echar el tomate",
+      "tiempo": "1",
+      "recetaId": 1
+    }
+  ],
+  "ingredientes": [
+    {
+      "id": 1,
+      "nombre": "Macarrones",
+      "cantidad": "100gr",
+      "kcal": 200,
+      "proteinas": 7,
+      "grasas": 5,
+      "hidratos": 10
+    },
+    {
+      "id": 2,
+      "nombre": "Tomate frito",
+      "cantidad": "100gr",
+      "kcal": 200,
+      "proteinas": 7,
+      "grasas": 5,
+      "hidratos": 10
+    }
+  ],
+  "ingredientes_recetas": [
+    {
+      "id": 1,
+      "cantidad": "200gr",
+      "recetaId": 1,
+      "ingredienteId": 1
+    },
+    {
+      "id": 1,
+      "cantidad": "20cl",
+      "recetaId": 1,
+      "ingredienteId": 2
+    }
+  ],
+  "users": [
+    {
+      "email": "manolo@mail.com",
+      "password": "$2a$10$yHZqlRkKrzcqllZddQdEi.r1o1aRKFoEyasPGsrBIMLk..j5J4EYy",
+      "id": 1
+    },
+    {
+      "email": "paco@mail.com",
+      "password": "$2a$10$NtByBEzddWZ9bW4TQbX2xe/HGduULQu6c.j2OyVZOjyEm.MH7HpQO",
+      "id": 2
+    }
+  ]
+}
