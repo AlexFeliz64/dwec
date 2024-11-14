@@ -1,0 +1,43 @@
+<form (ngSubmit)="guardar()" [formGroup]="formulario" class="container" autocomplete="off">
+
+    <div class="mx-auto">        
+
+        <!-- Identificador de la receta -->
+        <input id="id" name="id" type="hidden" value="-1">
+
+            <!-- Nombre de la receta. Es texto -->
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="nombre" class="form-label">Título</label>
+
+                    <!-- El título -->
+                    <input formControlName="nombre" type="text" class="form-control" [readonly]="actualizando">
+                    <!--<span class="form-text text-danger" *ngIf="esCampoNoValido('nombre')">{{ mensajeErrorCampo('titulo') }}</span>-->
+                </div>
+            </div>
+                     
+            <!-- Descripción -->
+            <div class="row">
+                <div class="col-md-12 mb-1">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea formControlName="descripcion" class="form-control" rows="2"></textarea>
+                    <!--<span class="form-text text-danger" *ngIf="esCampoNoValido('descripcion')">{{ mensajeErrorCampo('descripcion') }}</span>-->
+                </div>
+            </div>        
+
+        </div> 
+</form>    
+
+<hr>
+
+<!-- Botones de navegación -->
+<div class="row ">
+    <span class="col-7"></span>
+    <button class="btn btn-primary col-2 m-3" routerLink="/recetas">Volver</button>
+    
+    <!-- Desabilita el guardar si hay una operación en curso -->
+    <button class="btn btn-warning col-2 m-3" (click)="guardar()" [disabled]="formulario.pending">Guardar</button>
+</div>
+
+
+
