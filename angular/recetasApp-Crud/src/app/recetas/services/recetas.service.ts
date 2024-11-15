@@ -34,6 +34,12 @@ export class RecetasService {
     return this.httpClient.get<Receta>(`${this.URL_RECETAS}/${id}`);
   }
 
+  getPorNombre(nombre : string): Observable<Receta> {
+    
+    // Retorna un observable
+    return this.httpClient.get<Receta>(`${this.URL_RECETAS}?nombre=${nombre}`);
+  }
+
   /**
    * Borra una tarea pasada la tarea
    */

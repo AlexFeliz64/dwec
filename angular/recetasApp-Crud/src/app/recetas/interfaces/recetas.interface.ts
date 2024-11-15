@@ -1,4 +1,6 @@
 export interface Receta {
+    datos: any;
+    ok: number;
     id?:         number;
     nombre:      string;
     descripcion: string;

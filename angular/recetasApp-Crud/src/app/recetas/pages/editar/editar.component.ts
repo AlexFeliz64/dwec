@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService } from 'src/app/shared/services/dialog.service';
 import { switchMap, tap } from 'rxjs';
 import { Receta } from '../../interfaces/recetas.interface';
+import { ValidacionService } from 'src/app/shared/services/validacion.service';
+import { ValidacionNombreService } from 'src/app/tasks/validators/validacion-titulo.service';
 
 @Component({
   selector: 'app-editar',
@@ -22,11 +24,17 @@ export class EditarComponent implements OnInit {
     id          : [-1],
 
     nombre            : [ '', 
-                          [ Validators.required ],
+                          [ Validators.required, 
+                            this.validacionservice.validarEmpiezaMayuscula,
+                           ],
                           [ ]
                         ],
 
-    descripcion       : ['', [ Validators.required] ],
+    descripcion       : ['', 
+                          [ Validators.required,
+                            this.validacionservice.validarMaximoCaracteres,
+                            this.validacionnombreservice
+                          ] ],
 
   }, {  
     // 008 Este segundo argumento que puedo enviar al formgroup permite por ejemplo ejecutar
@@ -48,6 +56,9 @@ export class EditarComponent implements OnInit {
       private dialogService     : DialogService,
       
       private recetasService    : RecetasService,
+      private validacionservice : ValidacionService,
+      private validacionnombreservice : ValidacionNombreService,
+
   ) { }
 
 
@@ -122,8 +133,8 @@ export class EditarComponent implements OnInit {
       for(let e in errors) {
 
         // Obtiene el mensaje
-//        const mensaje = this.validacionService.getMensajeError(e);
-//        mensajeError = mensajeError + mensaje;        
+        const mensaje = this.validacionservice.getMensajeError(e);
+        mensajeError = mensajeError + mensaje;        
 
         // Solo quiero el primero en estos momentos. Si hubiera más podría tenerlos en un atributo
         // y mostrarlos con un ngFor
