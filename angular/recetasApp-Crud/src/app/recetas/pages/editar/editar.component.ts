@@ -27,19 +27,18 @@ export class EditarComponent implements OnInit {
                           [ Validators.required, 
                             this.validacionservice.validarEmpiezaMayuscula,
                            ],
-                          [ ]
+                          [ this.validacionnombreservice ]
                         ],
 
     descripcion       : ['', 
                           [ Validators.required,
                             this.validacionservice.validarMaximoCaracteres,
-                            this.validacionnombreservice
                           ] ],
 
   }, {  
     // 008 Este segundo argumento que puedo enviar al formgroup permite por ejemplo ejecutar
     // validadores sincronos y asíncronos. Son validaciones al formgroup
-    validators: [  ]
+    validators: [ this.validacionservice.camposNoIguales('nombre', 'descripcion') ]
   });
 
   // Indica si la tarea se está actualizando

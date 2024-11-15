@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +65,38 @@ export class ValidacionService {
 
     // Null implica que todo OK. Nada que notificar
     return null;
+  }
+
+  camposNoIguales(campo1: string, campo2: string) {
+    
+    // Retorna una función que trata el formgroup que va a hacer las comprobaciones
+    return ( formGroup : AbstractControl): ValidationErrors | null => {
+
+      const valor1 = formGroup.get(campo1)?.value;
+      const valor2 = formGroup.get(campo2)?.value;
+
+      if(valor1 == valor2) {
+
+        // Defino el error
+        const error = {
+          iguales: true
+        }
+
+        // Establece el error en el segundo campo que se ha comparado
+        // Esto es importante para que se pueda mostrar el error correctamente en la vista
+        formGroup.get(campo2)?.setErrors(error);
+
+        // Retorna el error
+        return error;
+
+      } else {
+        
+        // Me aseguro de eliminar el error en caso de que la validacióm se pase 
+        // OJO. Se elimina cualquier error que tuviera antes el campo
+        formGroup.get(campo2)?.setErrors(null);
+      }
+
+      return null;
+    }
   }
 }

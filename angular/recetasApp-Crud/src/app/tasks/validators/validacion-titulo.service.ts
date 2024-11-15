@@ -28,12 +28,13 @@ export class ValidacionNombreService implements AsyncValidator{
         //delay(5000),
 
         map( recetas => {
-          
-          if(recetas.ok == 1 && recetas.datos[0]?.nombre == nombre) {
-            return { nombreDuplicado: true }
-          } else {
-            return null;
-          }            
+          return null;
+          // Comprueba que no existe un nombre igual de la tabla en el campo
+          // if(recetas.ok == 1 && recetas.datos[0]?.nombre == nombre) {
+          //   return { nombreDuplicado: true }
+          // } else {
+          //   return null;
+          // }            
         })  
       );
   
