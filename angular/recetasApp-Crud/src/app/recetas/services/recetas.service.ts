@@ -19,10 +19,17 @@ export class RecetasService {
   /**
    * Obtiene la lista de recetas
    */ 
-  get(): Observable<Receta> {
+  get(pagina: number=environment.paginaInicial): Observable<Receta> {
+
+    let url: string;
     
+    if(pagina > 0){
+      url = `${this.URL_RECETAS}?_page=${pagina}&_limit=3`;
+    } else {
+      url = this.URL_RECETAS;
+    }
     // Retorna un observable
-    return this.httpClient.get<Receta>(this.URL_RECETAS);
+    return this.httpClient.get<Receta>(url);
   }
 
   /**

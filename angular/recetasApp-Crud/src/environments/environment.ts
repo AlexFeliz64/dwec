@@ -8,6 +8,10 @@ export const environment = {
   // URL Base de los servicios de taskman
   recetasBackendUrl: 'http://localhost:3000', 
 
+  paginaInicial: 1,
+
+  numeroRegistroPorPagina: 4,
+
   // Tiempo en milisegundos que un usuario debe estar sin pulsar una tecla
   // para que se acepte la entrada para lanzar por ejemplo un desplegable
   userInputDebounceDelay: 500,

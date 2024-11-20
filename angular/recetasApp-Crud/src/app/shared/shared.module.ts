@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ContadorComponent } from './components/contador/contador.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
+import { PaginadorComponent } from './components/paginador/paginador.component';
 
 
 @NgModule({
   declarations: [
     ContadorComponent,
-    MenuComponent
+    MenuComponent,
+    PaginadorComponent
   ],
   imports: [
     CommonModule,    
@@ -17,7 +19,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     ContadorComponent,
-    MenuComponent
+    MenuComponent,
+    PaginadorComponent
   ]
 })
 export class SharedModule { }

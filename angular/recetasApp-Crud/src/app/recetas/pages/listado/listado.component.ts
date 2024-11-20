@@ -9,8 +9,11 @@ import { DialogService } from 'src/app/shared/services/dialog.service';
   templateUrl: './listado.component.html'
 })
 export class ListadoComponent implements OnInit {
-
+  
   recetas: Receta[] = [];
+
+  //Pagina actual
+  paginaActual = 0;
 
   constructor(
       // Necesitamos este objeto para hacer peticiones. 
@@ -20,14 +23,17 @@ export class ListadoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.cargarRecetas();
+    this.cargarRecetas(this.paginaActual);
   }
 
 
-  private cargarRecetas() {
+  private cargarRecetas(pagina: number) {
     
+    // Carga la pagina actual de recetas
+    
+
     // Cuando la pantalla se muestra se tienen que mostrar las tareas.
-    this.recetasService.get()
+    this.recetasService.get(pagina)
      
       .pipe(
 
@@ -62,10 +68,19 @@ export class ListadoComponent implements OnInit {
           console.log("Eliminada");
 
           // Fuerza que la kusta de recetas se refesque
-          this.cargarRecetas();
+          this.cargarRecetas(this.paginaActual);
         });
       }
     );
   }  
+
+  //------------------------------------------
+  // Eventos 
+  //------------------------------------------
+
+  cambiarPagina(pagina: number){
+    this.paginaActual = pagina;
+    this.cargarRecetas(pagina);
+  }
 
 }

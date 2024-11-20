@@ -40,6 +40,7 @@
                 <!-- Eliminar la tarea -->
                 <i (click)="borrarReceta(receta)" class="btn btn-danger bi bi-trash"></i>
             </td>            
-        </tr>        
+        </tr>
+        <app-paginador [paginaActual]="paginaActual" (onPaginaCambiada)="cambiarPagina($event)"></app-paginador>        
     </tbody>
 </table>
