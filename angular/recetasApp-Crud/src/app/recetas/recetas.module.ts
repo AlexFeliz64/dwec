@@ -8,13 +8,15 @@ import { ListadoComponent } from './pages/listado/listado.component';
 import { EditarComponent } from './pages/editar/editar.component';
 import { VerComponent } from './pages/ver/ver.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TablaComponent } from './components/tabla/tabla.component';
 
 
 @NgModule({
   declarations: [
     ListadoComponent,
     EditarComponent,
-    VerComponent
+    VerComponent,
+    TablaComponent
   ],
   imports: [
     

@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Receta } from 'src/app/recetas/interfaces/recetas.interface';
-import { RecetasService } from 'src/app/recetas/services/recetas.service';
-import { DialogService } from 'src/app/shared/services/dialog.service';
 
 @Component({
   selector: 'app-tabla',
