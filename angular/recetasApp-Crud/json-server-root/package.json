@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0"
+  },
+  "scripts": {
+    "jsonjwt": "npx json-server --watch db.json -m ./node_modules/json-server-auth -r routes.json"
+  }
+}
