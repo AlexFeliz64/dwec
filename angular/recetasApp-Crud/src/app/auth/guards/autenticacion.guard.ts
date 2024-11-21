@@ -30,8 +30,9 @@ export class AutenticacionGuard implements CanActivate, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.autenticacionService.isSesionIniciada().pipe(
-      tap(autenticado =>{
+    return this.autenticacionService.isSesionIniciada()
+    .pipe(  
+    tap(autenticado =>{
         if(!autenticado){
           this.router.navigate(['/auth/login']);
         }
