@@ -6,41 +6,8 @@
 </div> 
 
 <!-- Aquí está la tabla donde se van a insetar los resultados -->
-<table class="table table-bordered table-striped text-center table-light table-hover align-items-center">
+<app-tabla [recetas]="recetas" (verReceta)="IrVer($event)" (editarReceta)="IrEditar($event)" (borrarReceta)="borrarReceta($event)"></app-tabla>
 
-    <!-- Encabezado de la tabla -->
-    <thead class="table text-white bg-primary">
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">nombre</th>
-            <th scope="col">descripcion</th>
-            <th scope="col"></th> <!-- Mostrar detalles -->
-            <th scope="col"></th> <!-- Editar -->
-            <th scope="col"></th> <!-- Eliminar receta -->            
-        </tr>
-    </thead>
-    
-    <!-- 
-        Cuerpo de la tabla. Aquí es donde se van a insertar las recetas
-     -->
-    <tbody>
-        <tr *ngFor="let receta of recetas; let i = index">
-            <td>{{ receta.id }}</td>
-            <td>{{ receta.nombre }}</td>
-            <td>{{ receta.descripcion }}</td>
-            <td>
-                <!-- Enlace a ver la receta -->
-                <i [routerLink]="['../', receta.id ]" class="btn btn-success bi bi-eye"></i>
-            </td>                
-            <td>
-                <!-- Enlace a la edición de la tarea -->                                
-                <i [routerLink]="['../editar', receta.id ]" class="btn btn-warning bi bi-pencil"></i>
-            </td>    
-            <td>
-                <!-- Eliminar la tarea -->
-                <i (click)="borrarReceta(receta)" class="btn btn-danger bi bi-trash"></i>
-            </td>            
-        </tr>
-        <app-paginador [paginaActual]="paginaActual" (onPaginaCambiada)="cambiarPagina($event)"></app-paginador>        
-    </tbody>
-</table>
+
+<p style="text-align:center;">Pagina {{ paginaActual }}</p>
+<app-paginador [paginaActual]="paginaActual" (onPaginaCambiada)="cambiarPagina($event)"></app-paginador>    

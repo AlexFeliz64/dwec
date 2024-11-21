@@ -3,6 +3,7 @@ import { Receta } from '../../interfaces/recetas.interface';
 import { RecetasService } from '../../services/recetas.service';
 import { tap } from 'rxjs/operators';
 import { DialogService } from 'src/app/shared/services/dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -18,7 +19,8 @@ export class ListadoComponent implements OnInit {
   constructor(
       // Necesitamos este objeto para hacer peticiones. 
       private recetasService: RecetasService,
-      private dialogService: DialogService
+      private dialogService: DialogService,
+      private router: Router
   ) { }
 
 
@@ -43,6 +45,15 @@ export class ListadoComponent implements OnInit {
       .subscribe( recetas => {                 
           this.recetas = recetas;    
       });
+  }
+
+
+  IrVer(receta: Receta): void {
+    this.router.navigate(['../', receta.id]);
+  }
+  
+  IrEditar(receta: Receta): void {
+    this.router.navigate(['../editar', receta.id]);
   }
 
   /**

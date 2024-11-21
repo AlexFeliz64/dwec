@@ -5,13 +5,15 @@ import { ContadorComponent } from './components/contador/contador.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { PaginadorComponent } from './components/paginador/paginador.component';
+import { TablaComponent } from './components/tabla/tabla.component';
 
 
 @NgModule({
   declarations: [
     ContadorComponent,
     MenuComponent,
-    PaginadorComponent
+    PaginadorComponent,
+    TablaComponent
   ],
   imports: [
     CommonModule,    
@@ -20,7 +22,8 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
   exports: [
     ContadorComponent,
     MenuComponent,
-    PaginadorComponent
+    PaginadorComponent,
+    TablaComponent
   ]
 })
 export class SharedModule { }
