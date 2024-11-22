@@ -30,11 +30,16 @@ export class AutenticacionService {
   }
 
   // Retorna true si la sesión está iniciada
-  isSesionIniciada(): Observable<boolean> {
-    return of(this.jwtToken != null);
+  isSesionIniciada(sinc = false): any //Observable<boolean> 
+  {
+    return sinc ? this.jwtToken : of(this.jwtToken !=null);
   }
 
   getJwtToken(): string | null {
     return this.jwtToken;
+  }
+
+  cerrarSesion(): void {
+    this.jwtToken = null;
   }
 }

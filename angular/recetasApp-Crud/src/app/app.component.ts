@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AutenticacionService } from './auth/services/autenticacion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +9,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   titulo = 'recetasApp';
+  sesionIniciada = false;
 
-  numero: number = 0; 
+  constructor(
+    private router: Router,
+    private autenticacionService: AutenticacionService
+  ){
 
-  sumar(v : number) {  
-    this.numero++;
+  }             
+
+  isSesionIniciada(){
+    return this.autenticacionService.isSesionIniciada(true);
   }
 
-  restar(v: number) {
-    this.numero--;
-  }                              
+  cerrarSesion(){
+    this.autenticacionService.cerrarSesion();
+
+    this.router.navigate(['auth/login'])
+  }
 }
