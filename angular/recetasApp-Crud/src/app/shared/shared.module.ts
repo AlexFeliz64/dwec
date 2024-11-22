@@ -5,6 +5,7 @@ import { ContadorComponent } from './components/contador/contador.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { PaginadorComponent } from './components/paginador/paginador.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { PaginadorComponent } from './components/paginador/paginador.component';
     ContadorComponent,
     MenuComponent,
     PaginadorComponent,
+    BuscadorComponent,
   ],
   imports: [
     CommonModule,    
