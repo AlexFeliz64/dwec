@@ -1,142 +1,45 @@
 {
-  "recetas": [
+  "peliculas": [
     {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "6"
+      "id": 0,
+      "titulo": "Hombre de hierro",
+      "genero": "Drama",
+      "duracion": "32",
+      "fecha_de_lanzamiento": "11/11/2011",
+      "sinopsis": "Durante las huelgas en los astilleros de Gdańsk a comienzos de los años 1980, Maciek Tomczyk (Jerzy Radziwiłowicz) es un obrero marcado por la muerte de su padre, que decide unirse a Solidarność para luchar a favor de los derechos sociales."
     },
     {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "8"
+      "titulo": "aa",
+      "genero": "aa",
+      "duracion": "aa",
+      "fecha_de_lanzamiento": "aa",
+      "id": 1
     },
     {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "9"
+      "titulo": "asaa",
+      "genero": "drtdyd",
+      "duracion": "dydy",
+      "fecha_de_lanzamiento": "dhdhd",
+      "id": 2
     },
     {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "10"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "11"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "12"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "13"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "14"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "15"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "16"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "17"
-    },
-    {
-      "nombre": "5u",
-      "descripcion": "dth",
-      "fecha_alta": "2024-11-01",
-      "tiempo": "546",
-      "id": "18"
-    },
-    {
-      "nombre": "Patatas",
-      "descripcion": "Fritas",
-      "id": "19"
-    },
-    {
-      "id": "20",
-      "nombre": "Fritas",
-      "descripcion": "para"
-    },
-    {
-      "id": "21",
-      "nombre": "Huevo",
-      "descripcion": "Fritoewfew"
-    },
-    {
-      "nombre": "32423423",
-      "descripcion": "324234",
-      "id": "22"
+      "titulo": "ew",
+      "genero": "werwer",
+      "duracion": "rwerwr",
+      "fecha_de_lanzamiento": "rgerge",
+      "id": 3
     }
   ],
-  "pasos_recetas": [],
-  "ingredientes": [
-    {
-      "id": "1",
-      "nombre": "Macarrones",
-      "cantidad": "100gr",
-      "kcal": 200,
-      "proteinas": 7,
-      "grasas": 5,
-      "hidratos": 10
-    },
-    {
-      "id": "2",
-      "nombre": "Tomate frito",
-      "cantidad": "100gr",
-      "kcal": 200,
-      "proteinas": 7,
-      "grasas": 5,
-      "hidratos": 10
-    }
-  ],
-  "ingredientes_recetas": [],
   "users": [
     {
-      "email": "manolo@mail.com",
-      "password": "$2a$10$yHZqlRkKrzcqllZddQdEi.r1o1aRKFoEyasPGsrBIMLk..j5J4EYy",
-      "id": "1"
+      "email": "admin@admin",
+      "password": "admin",
+      "id": 1
     },
     {
-      "email": "paco@mail.com",
-      "password": "$2a$10$NtByBEzddWZ9bW4TQbX2xe/HGduULQu6c.j2OyVZOjyEm.MH7HpQO",
-      "id": "2"
+      "email": "alecs@gmail.com",
+      "password": "alecs",
+      "id": 2
     }
   ]
 }

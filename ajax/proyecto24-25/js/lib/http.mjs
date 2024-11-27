@@ -8,38 +8,27 @@ export { get, del, post };
  * @param {} url URL del recurso a descargar
  */
 function get(url) {
-    return fetch(url);
+    return fetch(url).catch(error => {
+        console.error("Error en GET:", error);
+        throw error;
+    });
 }
 
-/**
- * Petición de tipo delete al servidor
- * 
- * @param {} url URL del recurso a eliminar
- */
 function del(url, id) {
-    return fetch(
-        url+"/"+id, 
-        {
-            method: "DELETE"
-        }
-    );
+    return fetch(url + "/" + id, { method: "DELETE" })
+        .catch(error => {
+            console.error("Error en DELETE:", error);
+            throw error;
+        });
 }
 
-/**
- * Envía datos al servidor
- * 
- * @param {*} url 
- */
 function post(url, objeto) {
-
-    return fetch(
-        url,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(objeto)
-        }
-    );
+    return fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(objeto)
+    }).catch(error => {
+        console.error("Error en POST:", error);
+        throw error;
+    });
 }

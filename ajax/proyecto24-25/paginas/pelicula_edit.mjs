@@ -18,20 +18,54 @@ export { inicializar };
 //-----------------------------------------------------------------------------
 function inicializar() {
 
-    // Inicializa los botones
-    $("#btnGuardar").on("click", onBtGuardarClick);
+/**
+* Obtiene el último id guardado
+*/
+    let nextId = 0
+
+    http.get(URL_PELICULAS)
+        .then(response => response.json())
+        .then(peliculas => {
+            if (peliculas.length > 0) {
+                let ultimoId = 0;
+                /**
+                 * Busca el id más alto
+                 */
+                for (const pelicula of peliculas) {
+                    if (pelicula.id > ultimoId) {
+                        ultimoId = pelicula.id;
+                    }
+                }
+                /*
+                 * Se guarda el siguiente id 
+                 */ 
+                nextId = ultimoId + 1;
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener las películas:", error);
+            nextId = 1; 
+        });
+
+    // Inicializa eventos y formulario
     $("#btnVolver").on("click", onBtVolverClick);
 
-    // Inicializa el formulario
     formulario.inicializar(
-        "#formularioPeliculas", 
-        (pelicula) => {
-            console.log("Peliculas inicializado, ", pelicula)
-            crearPelicula(pelicula)
+        "#formularioPeliculas",
+        pelicula => {
+
+            /**
+             * Se asigna el id siguiente
+             */
+            pelicula.id = nextId;
+            console.log("Formulario inicializado: ", pelicula);
+            crearPelicula(pelicula);
         },
-        () => {console.log("error")},
+        () => {
+            console.log("Error en el formulario");
+        }
     );
-};
+}
 
 
 
@@ -42,10 +76,6 @@ function inicializar() {
 /**
  * Evento para guardar los datos del formulario
  */
-function onBtGuardarClick(e) {
-
-
-}
 
 
 
@@ -62,7 +92,10 @@ function onBtVolverClick(e) {
 
 /**
  * Crea la receta
+ * 
+ * Además se aumenta el numero del id
  */
+
 function crearPelicula(pelicula) {
 
     http.post(URL_PELICULAS, pelicula)

@@ -41,7 +41,7 @@ function inicializar(form, onSubmit, onError) {
     $(form).find("[validacion^=val]").on('blur', onValidacionCampo);
     
     // Eventos para gestionar el envio del formulario
-    $(form).on('submit', onFormSubmit);    
+    $(form).on('submit', (evt) => onFormSubmit(evt));    
 
     // Asigna los eventos del formulario para su posterior uso
     document.querySelector(form).form_submit_handler = onSubmit;
@@ -80,6 +80,9 @@ function onEnviarClick(evento) {
  */
 function onFormSubmit(evento) { 
     
+    evento.preventDefault();
+
+    console.log('entró')
     // Obtiene el id del formulario
     const selector = '#'+evento.target.id;
 
@@ -100,7 +103,6 @@ function onFormSubmit(evento) {
 
     // Si tengo errores tengo que evitar que el formulario se envíe
     if(hayErrores) {
-        evento.preventDefault();
 
         // LLama a la gestión de errores
         onFormErrorCallback(selector);
