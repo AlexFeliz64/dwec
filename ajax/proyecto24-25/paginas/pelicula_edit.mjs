@@ -24,9 +24,12 @@ function inicializar() {
 
     // Inicializa el formulario
     formulario.inicializar(
-        "#formularioRecetas", 
-        (receta) => crearReceta(receta),
-        () => console.log("error"),
+        "#formularioPeliculas", 
+        (pelicula) => {
+            console.log("Peliculas inicializado, ", pelicula)
+            crearPelicula(pelicula)
+        },
+        () => {console.log("error")},
     );
 };
 
@@ -41,20 +44,16 @@ function inicializar() {
  */
 function onBtGuardarClick(e) {
 
-    // Validar el formulario
-
-    // Si todo ok, envía los datos
-
-    // Muestra mensaje indicando que se han guardado los cambios
 
 }
+
 
 
 /**
  * Evento para volver al listado de recetas
  */
 function onBtVolverClick(e) {
-    appCargar("recetas"); 
+    appCargar("peliculas"); 
 }
 
 //-----------------------------------------------------------------------------
@@ -64,13 +63,19 @@ function onBtVolverClick(e) {
 /**
  * Crea la receta
  */
-function crearReceta(receta) {
+function crearPelicula(pelicula) {
 
-    http.post(URL_PELICULAS, receta)
+    http.post(URL_PELICULAS, pelicula)
         .then(response => response.json())
-        .then(recetas => {
-            toast.mostrar("Se ha creado la receta: "+receta.nombre);            
-            appCargar("recetas");
+        .then(pelicula => {
+            console.log("Se ha creado correctamente")
+            toast.mostrar("Se ha creado la pelicula: "+pelicula.titulo);            
+            appCargar("peliculas");
+        })
+        .catch(error => {
+            console.error("Error al guardar la película:", error);
+            toast.mostrar("Error al guardar la película.", "error");
         });
 }
+
 

@@ -85,7 +85,7 @@ function onBotonBuscarClick() {
 function onBotonAñadirClick() {
     console.log("añadir");
 
-    appCargar("receta_edit");
+    appCargar("pelicula_edit");
 
 //    modal.preguntar("Estás seguro???", () => {
 //        console.log("Has aceptado");
@@ -105,7 +105,7 @@ function onEliminarClick(evento) {
         () => {
             http.del(URL_PELICULAS, id)
             .then(() => {
-                toast.mostrar("Receta eliminada");
+                toast.mostrar("Pelicula eliminada");
                 tabla.recargar(TBODY_RESULTADO);
             });
         }
