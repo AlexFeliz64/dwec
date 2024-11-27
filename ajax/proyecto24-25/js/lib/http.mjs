@@ -23,6 +23,11 @@ function del(url, id) {
 }
 
 function post(url, objeto) {
+    
+    /**
+     *  delete objeto(id);
+     */
+   
     return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
