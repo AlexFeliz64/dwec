@@ -9,7 +9,7 @@
 // Inicializacion
 //-------------------------------------------------------------------------
 /**
- * Inicializa el módulo de validaciones
+ * Comprobacion de inicializacion del módulo de validaciones
  */
 export function inicializar() {
     console.log("Módulo de validaciones inicializado");
@@ -25,7 +25,7 @@ export function inicializar() {
  */
 export class ResultadoValidacion {
 
-    // Validación ok
+    // Validación OK
     static #OK = new ResultadoValidacion();
 
     // Código de resultado. Un cero indica que no hay error
@@ -34,6 +34,7 @@ export class ResultadoValidacion {
     // Si hay error, indica el mensaje 
     #mensaje;
 
+    // Constructor inicializador
     constructor(resultado = 0, mensaje = null) {
         this.#resultado = resultado;
         this.#mensaje = mensaje;
@@ -57,28 +58,15 @@ export class ResultadoValidacion {
 }
 
 //-------------------------------------------------------------------------
-// Validaciones implementadas
-//
-// Las validaciones tienen que retornar un objeto de tipo error 
-// donde se debe indicar el código de error y el mensaje de error
+// Tipos de validaciones
 //-------------------------------------------------------------------------
 
 /**
- * Valida que la cadena pasada como argumento no esté vacía
+ * Valida que la cadena no se encuentre vacia, si no esta vacia da el OK
  * 
  * @param {*} cadena 
  * @returns 
  */
 export function val_CadenaNoVacia(cadena) {
     return cadena.trim().length != 0 ? ResultadoValidacion.OK : new ResultadoValidacion(-1, 'No se esperaba una cadena vacía');
-}
-
-/**
- * Valida que el número pasado como parámetro no esté vacío
- * 
- * @param {} numero 
- * @returns 
- */
-export function val_NumeroPar(numero) {
-    return numero % 2 == 0 ? ResultadoValidacion.OK : new ResultadoValidacion(-2, 'Se esperaba un número par');
 }

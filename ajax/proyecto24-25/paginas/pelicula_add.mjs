@@ -1,10 +1,10 @@
+
 //--------------------------------------------------------
 // Dependencias
 //--------------------------------------------------------
 import * as toast from '../js/componentes/toast.mjs';
 import * as http from '/js/lib/http.mjs';
 import * as formulario from '/js/servicios/formulario.mjs';
-import { idPelicula } from './peliculas.mjs';
 
 
 //--------------------------------------------------------
@@ -17,18 +17,34 @@ export { inicializar };
 // Inicialización del módulo
 //-----------------------------------------------------------------------------
 function inicializar() {
-    // Obtiene los datos de la película a editar
-    http.get(`${URL_PELICULAS}/${idPelicula}`)
+
+/**
+* Obtiene el último id guardado
+*/
+    let nextId = 0
+
+    http.get(URL_PELICULAS)
         .then(response => response.json())
-        .then(pelicula => {
-            // Rellena el formulario con los datos de la película
-            $("#formularioPeliculas [name='titulo']").val(pelicula.titulo);
-            $("#formularioPeliculas [name='genero']").val(pelicula.genero);
-            $("#formularioPeliculas [name='duracion']").val(pelicula.duracion);
-            $("#formularioPeliculas [name='fecha_de_lanzamiento']").val(pelicula.fecha_de_lanzamiento);
+        .then(peliculas => {
+            if (peliculas.length > 0) {
+                let ultimoId = 0;
+                /**
+                 * Busca el id más alto
+                 */
+                for (const pelicula of peliculas) {
+                    if (pelicula.id > ultimoId) {
+                        ultimoId = pelicula.id;
+                    }
+                }
+                /*
+                 * Se guarda el siguiente id 
+                 */ 
+                nextId = ultimoId + 1;
+            }
         })
         .catch(error => {
-            console.error("Error al obtener los datos de la película:", error);
+            console.error("Error al obtener las películas:", error);
+            nextId = 1; 
         });
 
     // Inicializa eventos y formulario
@@ -37,15 +53,20 @@ function inicializar() {
     formulario.inicializar(
         "#formularioPeliculas",
         pelicula => {
-            // Se asigna el id de la película y se actualiza
-            pelicula.id = idPelicula;
-            actualizarPelicula(pelicula);
+
+            /**
+             * Se asigna el id siguiente
+             */
+            pelicula.id = nextId;
+            console.log("Formulario inicializado: ", pelicula);
+            crearPelicula(pelicula);
         },
         () => {
             console.log("Error en el formulario");
         }
     );
 }
+
 
 
 //-----------------------------------------------------------------------------
@@ -56,7 +77,7 @@ function inicializar() {
  * Evento para volver al listado de peliculas
  */
 function onBtVolverClick(e) {
-    appCargar("peliculas");
+    appCargar("peliculas"); 
 }
 
 //-----------------------------------------------------------------------------
@@ -64,20 +85,22 @@ function onBtVolverClick(e) {
 //-----------------------------------------------------------------------------
 
 /**
- * Actualiza la película y muestra el mensaje emergente toast
+ * Crea la pelicula y muestra el mensaje emergente toast
  */
-function actualizarPelicula(pelicula) {
-    const id = pelicula.id; 
-    http.put(URL_PELICULAS, pelicula, id) 
+
+function crearPelicula(pelicula) {
+
+    http.post(URL_PELICULAS, pelicula)
         .then(response => response.json())
-        .then(peliculaActualizada => {
-            console.log("Pelicula actualizada correctamente", peliculaActualizada);
-            toast.mostrar("Pelicula actualizada correctamente");
+        .then(pelicula => {
+            console.log("Se ha creado correctamente")
+            toast.mostrar("Se ha creado la pelicula: "+pelicula.titulo);            
             appCargar("peliculas");
         })
         .catch(error => {
-            console.error("Error al actualizar la película:", error);
-            toast.mostrar("Error al actualizar la película.", "error");
+            console.error("Error al guardar la película:", error);
+            toast.mostrar("Error al guardar la película.", "error");
         });
 }
+
 

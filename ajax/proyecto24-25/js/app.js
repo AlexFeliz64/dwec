@@ -8,11 +8,6 @@ const PAGINAS_ROOT      = "paginas";
 const SERVICIOS_ROOT    = "js/servicios";
 const COMPONENTES_ROOT  = "js/componentes";
 
-//----------------------------------------------------------------------------
-// Constantes asociadas al BACKEND
-//----------------------------------------------------------------------------
-const LOGIN_RECURSO     = `${URL_BACKEND}/login`;
-
 
 //---------------------------------------------------------
 // Funciones de gestión de la aplicación

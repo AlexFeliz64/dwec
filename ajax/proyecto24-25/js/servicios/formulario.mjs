@@ -18,7 +18,8 @@ import * as validacionesModule from '/js/servicios/validaciones.mjs';
 // Interfaz
 //---------------------------------------------------------------------------
 export {
-    inicializar
+    inicializar,
+    prellenar
 };
 
 
@@ -34,16 +35,21 @@ export {
  */
 function inicializar(form, onSubmit, onError) {
 
-    // Inicializa las validaciones
     validacionesModule.inicializar();
 
-    // Los campos que tienen validacion se validan al salir del campo
+    /**
+     * Los campos que tienen la validacion se validan al salir del campo
+     */ 
     $(form).find("[validacion^=val]").on('blur', onValidacionCampo);
     
-    // Eventos para gestionar el envio del formulario
-    $(form).on('submit', (evt) => onFormSubmit(evt));    
+    /**
+     * Evento para gestionar el envio correcto del formulario
+     */
+    $(form).on('submit', (e) => onFormSubmit(e));    
 
-    // Asigna los eventos del formulario para su posterior uso
+    /**
+     * Asignacion de los eventos del formulario
+     */
     document.querySelector(form).form_submit_handler = onSubmit;
     document.querySelector(form).form_error_handler = onError;
 };
@@ -62,15 +68,13 @@ function inicializar(form, onSubmit, onError) {
  */
 function onValidacionCampo(evento) {
 
-    // Obtener el objeto jQuery asoiciado al campo
+    /**
+     * Obtiene el campo al que se va a validar
+     */
     const campo = $(evento.target);
 
     // Llama a validar el campo
     validarCampoFormulario(campo);
-}
-
-function onEnviarClick(evento) {
-    $('form').submit();
 }
 
 /**
@@ -83,10 +87,15 @@ function onFormSubmit(evento) {
     evento.preventDefault();
 
     console.log('entró')
-    // Obtiene el id del formulario
+
+    /**
+     * Obtiene el id del formulario
+     */
     const selector = '#'+evento.target.id;
 
-    // Variable donde guardo si hay errores de formulario
+    /**
+     * Se marca si hay errores
+     */
     let hayErrores = false;
 
     // Para cada campo del formulario lleva a cabo una validación
@@ -95,7 +104,7 @@ function onFormSubmit(evento) {
         // Llama a validar el campo
         const errores = validarCampoFormulario($(campo));
 
-        // Si tengo errores marco que hay errores
+        // Si hay errores marco que hay errores
         if(errores.length > 0) {
             hayErrores = true;
         }
@@ -123,8 +132,10 @@ function validarCampoFormulario(campo) {
     // Valida el campo
     const errores = validarCampo(campo);
 
-    // Si hay errores, marca el campo como inválido. En caso 
-    // contrario elimina los errores.
+    /**  
+     * Si hay errores, marca el campo como inválido. En caso 
+     * contrario elimina los errores.
+    */
     if(errores.length) {
         marcarCampoInvalido(campo, errores);
     } else {
@@ -149,21 +160,23 @@ function validarCampo(campo) {
     // Defino un array de errores con longitud cero. 
     let errores = [];
 
-    // IR llamando a las validaciones que tenga el campo
-    // Aplica todas las validaciones, ya que permito obtener todos los errores de una pasada
+    // Se aplican todas las validaciones hacia ese campo
     for(let i = 0;i < validaciones.length;i++) {
 
-        // Obtenemos el NOMBRE de la validacion
+        // Coge el tipo de validación
         const validacion = validaciones[i];
         console.log("Validación = "+validacion);
 
-        // Obtenemos la FUNCION
+        // Coge su funcionalizacion en cuanto a validación
         const funcionValidacion = eval('validacionesModule.'+validacion);
 
-        // Llamo a la validación. Si no se pasa lo almaceno en los errores
+        /**
+         * Se guarda si es correcto o no
+         * 
+         * Si no se envia una validacion se guarda un error
+         */
         const resultado = funcionValidacion(valor);
 
-        // Si hay errores los guardo en el array
         if(resultado.isError) {
             errores.push(resultado);
         }
@@ -193,7 +206,7 @@ function marcarCampoValido(campo) {
 //---------------------------------------------------------------------------
 function onFormErrorCallback(selector) {
 
-    // Obtiene la función a invocara
+    // Obtiene la funcion a la que da error y la q invocará
     const callback = document.querySelector(selector).form_error_handler;
 
     // Invoca a la función pasando el ID del formulario
@@ -202,7 +215,7 @@ function onFormErrorCallback(selector) {
 
 function onFormSubmitCallback(selector,objeto) {
 
-    // Obtiene la función a invocara
+    // // Obtiene la funcion y la q invocará
     const callback = document.querySelector(selector).form_submit_handler;
 
     // Invoca a la función pasando el ID del formulario
@@ -232,6 +245,19 @@ function enviarFormulario(selector) {
     onFormSubmitCallback(selector, objeto);
 }
 
+/**
+ * Prellena el formulario con los datos de la película
+ */
+function prellenar(selector, datos) {
+    const formulario = document.querySelector(selector);
+    
+    // Itera sobre cada campo del formulario y asigna el valor correspondiente
+    for (let campo in datos) {
+        if (formulario[campo]) {
+            formulario[campo].value = datos[campo];
+        }
+    }
+}
 
 /**
  * Recorre todos los campos en el formulario y pone los valores en el objeto resultante

@@ -27,7 +27,7 @@ const ATTR_PLANTILLA    = 'tabla-plantilla';
 /**
  * Renderiza la tabla en el componente objetivo utilizando json2html
  * 
- * @param {*} urlRecetas Dirección al recurso
+ * @param {*} urlPeliculas Dirección al recurso
  * @param {*} elementoObjetivo Elemento html donde se va a renderizar la tabla
  * @param {*} plantilla Plantilla a emplear para renderizar la tabla
  */
@@ -130,7 +130,7 @@ function anterior(elementoObjetivo) {
  */
 function cambiarPagina(elementoObjetivo, incremento = 0) {
     
-    // Obtendo la url del recurso
+    // Obtengo la url del recurso
     const urlRecurso = $(elementoObjetivo).attr(ATTR_URL_BASE);
     
     // Obtiene el filtro si lo hay

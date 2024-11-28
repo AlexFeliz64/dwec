@@ -15,7 +15,7 @@ const URL_PELICULAS = `${URL_BACKEND}/peliculas`;
 
 
 //-------------------------------------------------------------------
-// Parámetros de configuración de tablas
+// Numeros de filas que habrá en la tabla
 //-------------------------------------------------------------------
 
 const TABLA_REGISTROS_POR_PAGINA = 5;

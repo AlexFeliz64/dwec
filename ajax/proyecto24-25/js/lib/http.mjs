@@ -1,9 +1,8 @@
-
 // Exportaciones del módulo
-export { get, del, post };
+export { get, del, post, put };
 
 /**
- * Petición de tipo get al servidor
+ * Petición de tipo GET al servidor
  * 
  * @param {} url URL del recurso a descargar
  */
@@ -23,11 +22,11 @@ function del(url, id) {
 }
 
 function post(url, objeto) {
-    
     /**
-     *  delete objeto(id);
+     *  Para que no genere unos caracteres aleatorios en el campo id
+     *  y los genere de forma coherente
+     *  @param {delete objeto(id);}
      */
-   
     return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,3 +36,19 @@ function post(url, objeto) {
         throw error;
     });
 }
+
+/**
+ * Petición de tipo PUT al servidor
+ */
+function put(url, objeto, id) {
+    return fetch(`${url}/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(objeto)
+    }).catch(error => {
+        console.error("Error en PUT:", error);
+        throw error;
+    });
+}
+
+

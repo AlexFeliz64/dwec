@@ -11,7 +11,8 @@ import * as toast from '../js/componentes/toast.mjs';
 //--------------------------------------------------------
 // Exportaciones 
 //--------------------------------------------------------
-export { inicializar };
+let idPelicula;
+export { inicializar, idPelicula };
 
 
 //--------------------------------------------------------
@@ -19,6 +20,7 @@ export { inicializar };
 //--------------------------------------------------------
 const TBODY_RESULTADO = "#resultado";
 const DIV_PAGINADOR = "#paginador";
+
 
 const JSON2HTML_PLANTILLA_TABLA = {
       '<>': 'tr','html': [
@@ -80,16 +82,17 @@ function onBotonBuscarClick() {
 
 
 /**
- * Evento añadir receta
+ * Evento para añadir datos
  */
 function onBotonAñadirClick() {
     console.log("añadir");
 
-    appCargar("pelicula_edit");
+    appCargar("pelicula_add");
+}
 
-//    modal.preguntar("Estás seguro???", () => {
-//        console.log("Has aceptado");
-//    });
+
+function obtenerIdDeEvento(evento){
+    return evento.target.value;
 }
 
 /** 
@@ -98,8 +101,8 @@ function onBotonAñadirClick() {
 function onEliminarClick(evento) {
     console.log("Eliminar");
 
-    // Obtengo el identificador de la receta a eliminar
-    const id=evento.target.value;    
+    // Obtengo el ID de la pelicula a eliminar   
+    let id = obtenerIdDeEvento(evento)
     modal.preguntar(
         "¿Está seguro de que desea eliminar el registro?", 
         () => {
@@ -110,13 +113,19 @@ function onEliminarClick(evento) {
             });
         }
     );
-
-    //toast.mostrar("Has eliminado un elemento");
 }
 
-/** 
- * Se va a editar un registro 
+/**
+ * Evento para editar datos
  */
 function onEditarClick(evento) {
     console.log("Editar");
+
+    idPelicula = obtenerIdDeEvento(evento);
+
+    appCargar("pelicula_edit"); // Cargar el formulario de edición
 }
+
+
+
+
