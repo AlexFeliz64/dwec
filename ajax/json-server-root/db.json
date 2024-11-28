@@ -17,7 +17,7 @@
     },
     {
       "titulo": "asaalecs",
-      "genero": "drtdyd",
+      "genero": "javichu",
       "duracion": "dydy",
       "fecha_de_lanzamiento": "dhdhd",
       "id": 2
@@ -35,6 +35,13 @@
       "duracion": "",
       "fecha_de_lanzamiento": "",
       "id": 9
+    },
+    {
+      "titulo": "ada",
+      "genero": "awda",
+      "duracion": "awd",
+      "fecha_de_lanzamiento": "",
+      "id": 10
     }
   ],
   "users": [

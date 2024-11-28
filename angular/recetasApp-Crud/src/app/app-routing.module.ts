@@ -30,7 +30,7 @@ const routes: Routes = [
   },
 
   {
-    // La ruta por defecto. Va a entrar aquí si solicitamos
+    // La ruta por defecto.  Va a entrar aquí si solicitamos
     // una ruta no definida.
     path: '**',
     redirectTo: 'dashboard'
