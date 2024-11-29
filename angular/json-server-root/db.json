@@ -1,0 +1,59 @@
+{
+  "peliculas": [
+    {
+      "id": 0,
+      "titulo": "Hombre de hierro",
+      "genero": "Drama",
+      "duracion": "32",
+      "fecha_de_lanzamiento": "11/11/2011",
+      "sinopsis": "Durante las huelgas en los astilleros de Gdańsk a comienzos de los años 1980, Maciek Tomczyk (Jerzy Radziwiłowicz) es un obrero marcado por la muerte de su padre, que decide unirse a Solidarność para luchar a favor de los derechos sociales."
+    },
+    {
+      "titulo": "aalecs",
+      "genero": "aa",
+      "duracion": "aa",
+      "fecha_de_lanzamiento": "aa",
+      "id": 1
+    },
+    {
+      "titulo": "asaalecs",
+      "genero": "javichu",
+      "duracion": "dydy",
+      "fecha_de_lanzamiento": "dhdhd",
+      "id": 2
+    },
+    {
+      "titulo": "ew",
+      "genero": "werwer",
+      "duracion": "rwerwr",
+      "fecha_de_lanzamiento": "rgerge",
+      "id": 3
+    },
+    {
+      "titulo": "awdaw",
+      "genero": "",
+      "duracion": "",
+      "fecha_de_lanzamiento": "",
+      "id": 9
+    },
+    {
+      "titulo": "ada",
+      "genero": "awda",
+      "duracion": "awd",
+      "fecha_de_lanzamiento": "",
+      "id": 10
+    }
+  ],
+  "users": [
+    {
+      "email": "admin@admin",
+      "password": "admin",
+      "id": 1
+    },
+    {
+      "email": "alecs@gmail.com",
+      "password": "alecs",
+      "id": 2
+    }
+  ]
+}
