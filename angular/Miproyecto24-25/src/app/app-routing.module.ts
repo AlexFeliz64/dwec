@@ -6,6 +6,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
 
 const routes:Routes = [
 
+  {path: '', redirectTo: '/peliculas', pathMatch: 'full'},
+
   {path:'peliculas', component:PeliculaComponent},
   {path:'listado', component:ListadoComponent},
   {path:'pelicula/:id', component:PeliculaComponent},
@@ -13,10 +15,6 @@ const routes:Routes = [
 
 
   {path:'**', 
-    redirectTo: '/peliculas'
-  },
-
-  {path:'', 
     redirectTo: '/peliculas'
   },
   
