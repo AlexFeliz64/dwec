@@ -15,6 +15,10 @@ const routes:Routes = [
   {path:'**', 
     redirectTo: '/peliculas'
   },
+
+  {path:'', 
+    redirectTo: '/peliculas'
+  },
   
 ]
 
