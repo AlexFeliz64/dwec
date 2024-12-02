@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { Pelicula } from 'src/app/interfaces/peliculas.interfaces';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
 @Component({
   selector: 'app-menu-peliculas',
-  templateUrl: './menuPeliculas.component.html',
-  styleUrls: ['./menuPeliculas.component.css']
+  templateUrl: './menuPeliculas.component.html'
 })
 export class MenuPeliculasComponent implements OnInit {
 
@@ -18,7 +18,12 @@ export class MenuPeliculasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.peliculaservice.getPeliculas().subscribe(peliculas = console.log(peliculas));
+    this.peliculaservice.getPeliculas()
+    .pipe(
+      tap(console.log)
+    )
+    
+    .subscribe(peliculas => this.peliculas = peliculas);
   }
 
 }

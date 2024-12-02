@@ -1,11 +1,13 @@
 <h1>Peliculas</h1>
 <hr>
 <div class="card-columns">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
+    <div class="card bg-dark text-light" *ngFor="let peli of peliculas">
+      <div class="card header bg-dark text-light">{{peli.duracion}}</div>
+      <img src="assets/peliculas/{{peli.id}}.png" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">Card title that wraps to a new line</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <h3><strong>{{peli.titulo}}</strong></h3>
+        <button class="btn btn-outline-primary mt-3 mr-2">Leer más</button>
+        <button class="btn btn-outline-danger mt-3">Editar</button>
       </div>
     </div>
 </div>
