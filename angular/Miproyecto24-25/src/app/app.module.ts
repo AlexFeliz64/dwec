@@ -17,7 +17,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     PeliculaComponent,
     BuscarComponent,
     ListadoComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

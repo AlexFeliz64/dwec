@@ -1,1 +1,18 @@
-<p>pelicula works!</p>
+<h2>Peliculas</h2>
+<div class="d-flex justify-content-center">
+    <div>
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <img [src]="getImg(pelicula.id)" class="img-fluid img-thumbnail">
+            </div>
+            <div class="col-8">
+                <h2><strong>Titulo:</strong> {{pelicula.titulo}}</h2>
+                <p><strong>Genero:</strong> {{pelicula.genero}}</p>
+                <p><strong>Fecha de lanzamiento:</strong> {{pelicula.fecha_de_lanzamiento}}</p>
+                <button class="btn btn-outline-danger btn-xs" routerLink="/">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>
+

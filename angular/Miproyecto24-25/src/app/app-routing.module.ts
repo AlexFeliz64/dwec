@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PeliculaComponent } from './pages/pelicula/pelicula.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ListadoComponent } from './pages/listado/listado.component';
@@ -7,14 +6,18 @@ import { MenuPeliculasComponent } from './pages/menuPeliculas/menuPeliculas.comp
 
 const routes:Routes = [
 
-  {path: '', redirectTo: '/peliculas', pathMatch: 'full'},
-
+  // Ruta para el menus con las peliculas
   {path:'menuPeliculas', component:MenuPeliculasComponent},
+  
+  // Ruta para el listado en tabla
   {path:'listado', component:ListadoComponent},
-  {path:'pelicula/:id', component:PeliculaComponent},
+  
+  // Ruta para el id de la pelicula
+  {path:':id', component:PeliculaComponent},
+  
   {path:'buscar/:texto', component:PeliculaComponent},
 
-
+  // Ruta por defecto
   {path:'**', 
     redirectTo: '/menuPeliculas'
   },

@@ -4,7 +4,7 @@ export interface PeliculasID0TituloHombreDeHierroGeneroDramaDuracion32FechaDeLan
 }
 
 export interface Pelicula {
-    id:                   number;
+    id:                   string;
     titulo:               string;
     genero:               string;
     duracion:             string;

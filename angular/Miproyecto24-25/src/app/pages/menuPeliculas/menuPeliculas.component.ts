@@ -26,4 +26,13 @@ export class MenuPeliculasComponent implements OnInit {
     .subscribe(peliculas => this.peliculas = peliculas);
   }
 
+  /**
+   * Da el ID para obtener el nombre de la imagen
+   * @param peliculaId 
+   * @returns ruta completa de la imagen
+   */
+  getImg(peliculaId: string): string {
+    return this.peliculaservice.getImgPelicula(peliculaId);
+  }
+
 }
