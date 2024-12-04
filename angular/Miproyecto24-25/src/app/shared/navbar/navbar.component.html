@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Inicio</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -12,10 +13,16 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="listado" routerLinkActive="active">Listado</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="articulo" routerLinkActive="active">Articulos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="proveedor" routerLinkActive="active">Proveedores</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar película" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+      <input #buscador class="form-control mr-sm-2" type="search" (keyup.enter)="buscarHeroe(buscador.value)" placeholder="Buscar película" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="buscarHeroe(buscador.value)">Buscar</button>
     </form>
   </div>
 </nav>

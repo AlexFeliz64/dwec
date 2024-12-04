@@ -1,1 +1,17 @@
-<p>buscar works!</p>
+<h2>Buscador de Peliculas</h2>
+<hr>
+<div class="row">
+    <div class="col-12" *ngIf="peliculas.length == 0">
+        <div class="alert alert-info">
+            No existe ninguna pelicula con un nombre parecido
+        </div>
+    </div>
+</div>
+
+<div class="card-columns">
+    <!-- Recorre un ForEach para las peliculas -->
+      <div class="card bg-dark text-light" *ngFor="let pelicula of peliculas">
+        <app-tarjeta-pelicula [pelicula]="pelicula"></app-tarjeta-pelicula>
+      </div>
+</div>
+

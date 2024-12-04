@@ -1,0 +1,11 @@
+<div class="card header bg-dark text-light">{{pelicula.duracion}}</div>
+<img [src]="getImg(pelicula.id)" class="card-img-top">
+<div class="card-body">
+  <h3><strong>{{pelicula.titulo}}</strong></h3>
+  <!-- 
+  Lleva a la ruta del id de la pelicula en cuestion 
+   y se pone [] para enviar datos 
+  -->
+  <button class="btn btn-outline-primary mt-3 mr-2" [routerLink]="['/', pelicula.id]">Leer más</button>
+  <button class="btn btn-outline-danger mt-3" >Editar</button>
+</div>

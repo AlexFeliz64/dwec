@@ -6,12 +6,16 @@ import { Observable } from 'rxjs';
 
 const URL = environment.server;
 const imgPeliculas = environment.rutaImgPeliculas;
+// const limite = environment.registrosPorPagina;
+// const pagina = environment.paginaInicial;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculasService {
 
+  pagina = 1;
+  limite = 3;
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +29,12 @@ export class PeliculasService {
     return this.http.get<Pelicula[]>(`${URL}/peliculas`);
   }
   
+  getPeliculasPaginado(): Observable<Pelicula[]>
+  { 
+    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
+  }
+
+
   /**
    * Devuelve la peliculas del id indicado
    * @param id 
@@ -42,5 +52,23 @@ export class PeliculasService {
    */
   getImgPelicula(id: string): string {
     return `${imgPeliculas}${id}.png`;
+  }
+
+  getBuscarPelicula(titulo: string): Observable<Pelicula[]>{
+    return this.http.get<Pelicula[]>(`${URL}/peliculas?titulo_like=${titulo}`);
+  }
+
+  getPaginadorAnterior(atras: number){
+
+    this.pagina = this.pagina - atras;
+
+    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
+  }
+
+  getPaginadorSiguiente(adelante: number){
+
+    this.pagina = this.pagina + adelante;
+
+    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
   }
 }

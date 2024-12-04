@@ -7,9 +7,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class PaginadorComponent implements OnInit {
 
 
-  /** 
-   * 
-  */
   @Input() paginaActual: number=0;
 
   @Output() onPaginaCambiada: EventEmitter<number> = new EventEmitter();
