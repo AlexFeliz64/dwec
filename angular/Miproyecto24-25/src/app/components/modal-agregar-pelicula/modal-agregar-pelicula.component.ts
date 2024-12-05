@@ -21,6 +21,9 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     private fb: FormBuilder,
     private validacionService: ValidacionService
   ) {
+    /**
+     * Grupo con el formulario y las validaciones de cada campo
+     */
     this.peliculaForm = this.fb.group({
       titulo: ['', 
         Validators.required],
@@ -39,8 +42,10 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     
   }
 
+  /**
+   * Si es una edición, llenar el formulario con los datos de la película
+   */
   ngOnInit(): void {
-    // Si es una edición, llenar el formulario con los datos de la película
     if (this.peliculaEdicion) {
       this.peliculaForm.patchValue({
         titulo: this.peliculaEdicion.titulo,
@@ -52,10 +57,11 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     }
   }
 
-  comprobarValidacion(){
-
-  }
-
+  /**
+   * Comprueba si todo esta correcto con los campos 
+   * y comprueba si se edita o guarda
+   * @returns 
+   */
   guardar(): void {
 
     this.formGuardado = true;
@@ -74,6 +80,9 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     }
   }
 
+  /**
+   * Crea la pelicula por cada fila del formulario
+   */
   crearPelicula(): void {
     const nuevaPelicula: Pelicula = this.peliculaForm.getRawValue();
     this.peliculaservice.agregarPelicula(nuevaPelicula).subscribe({
@@ -89,7 +98,9 @@ export class ModalAgregarPeliculaComponent implements OnInit {
       },
     });
   }
-
+  /**
+   * Edita la pelicula por cada fila del formulario
+   */
   editarPelicula(): void {
     const peliculaEditada: Pelicula = this.peliculaForm.getRawValue();
     this.peliculaservice.editarPelicula(this.peliculaEdicion!.id, peliculaEditada).subscribe({

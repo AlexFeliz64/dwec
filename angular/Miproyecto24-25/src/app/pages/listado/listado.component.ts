@@ -34,6 +34,10 @@ export class ListadoComponent implements OnInit {
     });
   }
 
+  /**
+   * Salta un mensaje para confirmar borrado y borra
+   * @param id 
+   */
   eliminarPelicula(id: string): void {
     if (confirm('¿Estás seguro de que deseas eliminar esta película?')) {
       this.peliculaservice.eliminarPelicula(id).subscribe({
@@ -56,7 +60,7 @@ export class ListadoComponent implements OnInit {
 
   abrirModal(pelicula: Pelicula): void {
     this.peliculaEdicion = pelicula;
-    this.mostrarModal = true;  // Abrir el modal
+    this.mostrarModal = true;  
   }
 
   abrirModalCrear(){
@@ -65,8 +69,8 @@ export class ListadoComponent implements OnInit {
   }
 
   cerrarModal(): void {
-    this.mostrarModal = false;  // Cerrar el modal
-    this.peliculaEdicion = null;  // Limpiar la película de edición
+    this.mostrarModal = false;  
+    this.peliculaEdicion = null;  
   }
 
   getImg(peliculaId: string): string {
