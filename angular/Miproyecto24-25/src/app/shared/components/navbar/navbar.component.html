@@ -13,16 +13,10 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="listado" routerLinkActive="active">Listado</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="articulo" routerLinkActive="active">Articulos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="proveedor" routerLinkActive="active">Proveedores</a>
-      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input #buscador class="form-control mr-sm-2" type="search" (keyup.enter)="buscarHeroe(buscador.value)" placeholder="Buscar película" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="buscarHeroe(buscador.value)">Buscar</button>
+      <input #buscador class="form-control mr-sm-2" type="search" (keyup.enter)="buscarPelicula(buscador.value)" placeholder="Buscar película" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="buscarPelicula(buscador.value)">Buscar</button>
     </form>
   </div>
 </nav>

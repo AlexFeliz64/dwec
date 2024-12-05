@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importaciones necesarias
 import { Pelicula } from 'src/app/interfaces/peliculas.interfaces';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -8,49 +9,54 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 })
 export class ListadoComponent implements OnInit {
 
-  peliculas: Pelicula[]=[];
+  peliculas: Pelicula[] = [];
+  peliculaEdicion: Pelicula | null = null;
+  mostrarModal: boolean = false;
 
+  pagina: number = 1;
+  limite = 3;
   adelante = 0;
   atras = 0;
-  
+
+
   constructor(
     private peliculaservice: PeliculasService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    this.cargarPeliculas();
+  }
 
-    this.peliculaservice.getPeliculasPaginado().subscribe(respuesta=>{
-
-      this.peliculas=respuesta;
+  cargarPeliculas(): void {
+    this.peliculaservice.getPeliculasPaginado(this.pagina, this.limite).subscribe((respuesta) => {
+      this.peliculas = respuesta;
       console.log(this.peliculas);
-
-    })
-
+    });
   }
 
-  paginarAnterior(){
-
-    this.atras = 1;
-
-    this.peliculaservice.getPaginadorAnterior(this.atras).subscribe(respuesta=>{
-
-        this.peliculas=respuesta;
-        console.log('Atras',this.peliculas);
-    })
-
+  cambiarPagina(pagina: number): void {
+    this.pagina = pagina;
+    this.cargarPeliculas();
   }
 
-  paginarSiguiente(){
 
-    this.adelante = 1;
-
-    this.peliculaservice.getPaginadorSiguiente(this.adelante).subscribe(respuesta=>{
-
-      this.peliculas=respuesta;
-      console.log('Adelante',this.peliculas);
-
-    })
-
+  abrirModal(pelicula: Pelicula): void {
+    this.peliculaEdicion = pelicula;
+    this.mostrarModal = true;  // Abrir el modal
   }
 
+  abrirModalCrear(){
+    this.peliculaEdicion = null;
+    this.mostrarModal = true;
+  }
+
+  cerrarModal(): void {
+    this.mostrarModal = false;  // Cerrar el modal
+    this.peliculaEdicion = null;  // Limpiar la película de edición
+  }
+
+  getImg(peliculaId: string): string {
+    return this.peliculaservice.getImgPelicula(peliculaId);
+  }
+  
 }

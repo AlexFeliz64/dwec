@@ -1,7 +1,47 @@
-<div class="mt-2">
+<!-- listado.component.html -->
+<h1>Listado Peliculas</h1>
+<hr>
 
-    <button class="btn btn-primary float-left btn-large btnPaginador" (click)="paginarAnterior()">Atras</button>
+<button class="btn btn-primary mb-3" (click)="abrirModalCrear()">
+  <i class="fa fa-plus" aria-hidden="true"></i> Agregar Película
+</button>
 
-    <button class="btn btn-primary float-right btn-large btnPaginador" (click)="paginarSiguiente()">Adelante</button>
+<!-- Usar el componente modal -->
+<app-modal-agregar-pelicula *ngIf="mostrarModal" 
+[peliculaEdicion]="peliculaEdicion" 
+(peliculaAgregada)="cargarPeliculas()"
+(cerrarModal)="cerrarModal()">
+</app-modal-agregar-pelicula>
 
-</div>
+<table class="table table-dark text-center">
+    <thead>
+      <tr>
+        <th scope="col">Portada</th>
+        <th scope="col">Título</th>
+        <th scope="col">Género</th>
+        <th scope="col">Duración</th>
+        <th scope="col">Fecha de lanzamiento</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pelicula of peliculas">
+          <td><img [src]="getImg(pelicula.id)" class="img-thumbnail" width="100"></td>
+          <td>{{ pelicula.titulo }}</td>
+          <td>{{ pelicula.genero }}</td>
+          <td>{{ pelicula.duracion }}</td>
+          <td>{{ pelicula.fecha_de_lanzamiento }}</td>
+          <td>
+            <!-- Botón para editar película -->
+            <button class="btn btn-warning btn-xs" (click)="abrirModal(pelicula)">
+              <i class="fa-solid fa-pen" aria-hidden="true"></i> Editar
+            </button>
+            <!-- Botón para eliminar película -->
+            <button class="btn btn-danger btn-xs"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+
+<app-paginador (cambioPagina)="cambiarPagina($event)"></app-paginador>
+

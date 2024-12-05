@@ -1,18 +1,19 @@
 {
   "peliculas": [
     {
-      "id": 0,
-      "titulo": "Hombre de hierro",
-      "genero": "Drama",
-      "duracion": "32",
-      "fecha_de_lanzamiento": "11/11/2011",
-      "sinopsis": "Durante las huelgas en los astilleros de Gdańsk a comienzos de los años 1980, Maciek Tomczyk (Jerzy Radziwiłowicz) es un obrero marcado por la muerte de su padre, que decide unirse a Solidarność para luchar a favor de los derechos sociales."
+      "titulo": "alec4",
+      "genero": "erwe",
+      "duracion": 34532,
+      "fecha_de_lanzamiento": "2024-12-09",
+      "portada": "",
+      "id": 0
     },
     {
-      "titulo": "aalecs",
-      "genero": "aa",
-      "duracion": "aa",
-      "fecha_de_lanzamiento": "aa",
+      "titulo": "kk2",
+      "genero": "kk2",
+      "duracion": 764,
+      "fecha_de_lanzamiento": "2024-12-03",
+      "portada": "",
       "id": 1
     },
     {
@@ -42,6 +43,70 @@
       "duracion": "awd",
       "fecha_de_lanzamiento": "",
       "id": 10
+    },
+    {
+      "titulo": "UP",
+      "genero": "Comedia, Drama",
+      "duracion": 232,
+      "fecha_de_lanzamiento": "2024-12-03",
+      "portada": "",
+      "id": 11
+    },
+    {
+      "titulo": "dfghdhfdfbd",
+      "genero": "sfddfghfdfhgdfg",
+      "duracion": 34343,
+      "fecha_de_lanzamiento": "2024-12-18",
+      "portada": "",
+      "id": 12
+    },
+    {
+      "titulo": "seseseg",
+      "genero": "segsegsgs",
+      "duracion": 232,
+      "fecha_de_lanzamiento": "2024-12-03",
+      "portada": "",
+      "id": 13
+    },
+    {
+      "titulo": "hola",
+      "genero": "sddgsddg",
+      "duracion": 232,
+      "fecha_de_lanzamiento": "2024-12-17",
+      "portada": "",
+      "id": 14
+    },
+    {
+      "titulo": "adsddfsd",
+      "genero": "sawfaasf",
+      "duracion": 1212,
+      "fecha_de_lanzamiento": "2024-12-03",
+      "portada": "",
+      "id": 15
+    },
+    {
+      "titulo": "ssdfs",
+      "genero": "sdggsg",
+      "duracion": 234,
+      "fecha_de_lanzamiento": "2024-12-17",
+      "portada": "",
+      "id": 16
+    },
+    {
+      "titulo": "Alecs2",
+      "genero": "aaa",
+      "duracion": 23,
+      "fecha_de_lanzamiento": "2024-12-02",
+      "portada": "",
+      "id": 17
+    },
+    {
+      "titulo": "alesc8989",
+      "genero": "awfaw",
+      "duracion": 213,
+      "fecha_de_lanzamiento": "2024-12-02",
+      "portada": "",
+      "id": 18
     }
   ],
   "users": [

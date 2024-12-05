@@ -1,0 +1,38 @@
+
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-light">
+        <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cerrarModal.emit()">Cerrar</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="peliculaForm" (ngSubmit)="guardar()">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input formControlName="titulo" id="titulo" class="form-control" type="text" />
+          </div>
+          <div class="mb-3">
+            <label for="genero" class="form-label">Género</label>
+            <input formControlName="genero" id="genero" class="form-control" type="text" />
+          </div>
+          <div class="mb-3">
+            <label for="duracion" class="form-label">Duración</label>
+            <input formControlName="duracion" id="duracion" class="form-control" type="number" />
+          </div>
+          <div class="mb-3">
+            <label for="fecha_de_lanzamiento" class="form-label">Fecha de Lanzamiento</label>
+            <input formControlName="fecha_de_lanzamiento" id="fecha_de_lanzamiento" class="form-control" type="date" />
+          </div>
+          <div class="mb-3">
+            <label for="portada" class="form-label">Portada</label>
+            <input formControlName="portada" id="portada" class="form-control" type="text" />
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  

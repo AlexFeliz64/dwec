@@ -2,46 +2,36 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pelicula } from '../interfaces/peliculas.interfaces';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 const URL = environment.server;
 const imgPeliculas = environment.rutaImgPeliculas;
-// const limite = environment.registrosPorPagina;
-// const pagina = environment.paginaInicial;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeliculasService {
 
-  pagina = 1;
+  pagina: number = 1;
   limite = 3;
 
   constructor(private http: HttpClient) { }
-
 
   /**
    * Devuelve el listado de peliculas
    * @returns ruta del listado
    */
-  getPeliculas(): Observable<Pelicula[]>
-  { 
+  getPeliculas(): Observable<Pelicula[]> {
     return this.http.get<Pelicula[]>(`${URL}/peliculas`);
   }
-  
-  getPeliculasPaginado(): Observable<Pelicula[]>
-  { 
-    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
-  }
-
 
   /**
-   * Devuelve la peliculas del id indicado
+   * Devuelve la pelicula con el id indicado
    * @param id 
    * @returns ruta de la pelicula
    */
-  getPeliculaId(id: string): Observable<Pelicula>{
-    return this.http.get<Pelicula>(`${URL}/peliculas/${id}`)
+  getPeliculaId(id: string): Observable<Pelicula> {
+    return this.http.get<Pelicula>(`${URL}/peliculas/${id}`);
   }
 
   /**
@@ -54,21 +44,71 @@ export class PeliculasService {
     return `${imgPeliculas}${id}.png`;
   }
 
-  getBuscarPelicula(titulo: string): Observable<Pelicula[]>{
+  /**
+   * Buscar películas por título
+   * @param titulo 
+   * @returns películas que coinciden con el título
+   */
+  getBuscarPelicula(titulo: string): Observable<Pelicula[]> {
     return this.http.get<Pelicula[]>(`${URL}/peliculas?titulo_like=${titulo}`);
   }
 
-  getPaginadorAnterior(atras: number){
-
-    this.pagina = this.pagina - atras;
-
-    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
+  getPeliculasPaginado(pagina: number, limite: number): Observable<Pelicula[]> {
+    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${pagina}&_limit=${limite}`);
   }
 
-  getPaginadorSiguiente(adelante: number){
+  /**
+   * Paginación anterior
+   * @param atras 
+   * @returns listado de películas
+   */
+  getPaginadorAnterior(atras: number): Observable<Pelicula[]> {
+    if (this.pagina === 1) {
+      this.pagina = 1;
+    } else {
+      this.pagina = this.pagina - atras;
+    }
+    return this.getPeliculasPaginado(this.pagina, this.limite);
+  }
 
-    this.pagina = this.pagina + adelante;
+  /**
+   * Paginación siguiente
+   * @param adelante 
+   * @returns listado de películas
+   */
+  getPaginadorSiguiente(adelante: number): Observable<Pelicula[]> {
+    const nuevaPagina = this.pagina + adelante;
+  
+    return this.getPeliculasPaginado(nuevaPagina, this.limite)
+    .pipe(
+      map((peliculas: Pelicula[]) => {
+        if (peliculas.length > 0) {
+          this.pagina = nuevaPagina; 
+          return peliculas;
+        } else {
+          alert('Ya no hay más páginas disponibles.');
+          throw new Error('No hay más datos disponibles.');
+        }
+      })
+    );
+  }
 
-    return this.http.get<Pelicula[]>(`${URL}/peliculas?_page=${this.pagina}&_limit=${this.limite}`);
+  /**
+   * Agregar una nueva película
+   * @param pelicula 
+   * @returns la película agregada
+   */
+  agregarPelicula(pelicula: Pelicula): Observable<Pelicula> {
+    return this.http.post<Pelicula>(`${URL}/peliculas`, pelicula);
+  }
+
+  /**
+   * Editar una película existente
+   * @param id 
+   * @param pelicula 
+   * @returns la película editada
+   */
+  editarPelicula(id: string, pelicula: Pelicula): Observable<Pelicula> {
+    return this.http.put<Pelicula>(`${URL}/peliculas/${id}`, pelicula);
   }
 }
