@@ -18,17 +18,19 @@
             <input formControlName="genero" id="genero" class="form-control" type="text" />
           </div>
           <div class="mb-3">
-            <label for="duracion" class="form-label">Duración</label>
-            <input formControlName="duracion" id="duracion" class="form-control" type="number" />
+            <label for="duracion">Duración</label>
+            <input id="duracion" formControlName="duracion" type="number" />
+            <div class="text-danger" *ngIf="formGuardado && peliculaForm.get('duracion')?.hasError('duracionInvalida')">
+              La duración debe ser mayor o igual a 1.
+            </div>
           </div>
           <div class="mb-3">
-            <label for="fecha_de_lanzamiento" class="form-label">Fecha de Lanzamiento</label>
-            <input formControlName="fecha_de_lanzamiento" id="fecha_de_lanzamiento" class="form-control" type="date" />
-          </div>
-          <div class="mb-3">
-            <label for="portada" class="form-label">Portada</label>
-            <input formControlName="portada" id="portada" class="form-control" type="text" />
-          </div>
+              <label for="fecha_de_lanzamiento">Fecha de Lanzamiento</label>
+              <input id="fecha_de_lanzamiento" type="date" formControlName="fecha_de_lanzamiento" />
+              <div class="text-danger" *ngIf="peliculaForm.get('fecha_de_lanzamiento')?.hasError('fechaFutura')">
+                La fecha no puede ser en el futuro.
+              </div>
+          </div>            
           <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>

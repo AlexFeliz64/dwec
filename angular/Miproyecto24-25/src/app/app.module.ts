@@ -9,8 +9,8 @@ import { MenuPeliculasComponent } from './pages/menuPeliculas/menuPeliculas.comp
 import { PeliculaComponent } from './pages/pelicula/pelicula.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { ListadoComponent } from './pages/listado/listado.component';
-import { TarjetaPeliculaComponent } from './pages/tarjeta-pelicula/tarjeta-pelicula.component';
-import { ModalAgregarPeliculaComponent } from './pages/modal-agregar-pelicula/modal-agregar-pelicula.component';
+import { TarjetaPeliculaComponent } from './components/tarjeta-pelicula/tarjeta-pelicula.component';
+import { ModalAgregarPeliculaComponent } from './components/modal-agregar-pelicula/modal-agregar-pelicula.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({

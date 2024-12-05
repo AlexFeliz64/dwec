@@ -1,8 +1,13 @@
 <h1>Peliculas</h1>
 <hr>
+
+<!-- Botón para filtrar alfabéticamente -->
+<button class="btn btn-primary mb-3" (click)="ordenarAZ()">Ordenar A-Z</button>
+<button class="btn btn-secondary mb-3" (click)="ordenarZA()">Ordenar Z-A</button>
+
 <div class="card-columns">
   <!-- Recorre un ForEach para las peliculas -->
-    <div class="card bg-dark text-light" *ngFor="let pelicula of peliculas">
-      <app-tarjeta-pelicula [pelicula]="pelicula"></app-tarjeta-pelicula>
-    </div>
+  <div class="card bg-dark text-light" *ngFor="let pelicula of peliculas">
+    <app-tarjeta-pelicula [pelicula]="pelicula"></app-tarjeta-pelicula>
+  </div>
 </div>

@@ -9,21 +9,28 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 })
 export class MenuPeliculasComponent implements OnInit {
 
-  peliculas:Pelicula[]=[];
+  peliculas: Pelicula[] = [];
 
-  constructor
-  (
-    private peliculaservice: PeliculasService
-  ) { }
+  constructor(private peliculaservice: PeliculasService) {}
 
   ngOnInit(): void {
-
     this.peliculaservice.getPeliculas()
-    .pipe(
-      tap(console.log)
-    )
-    
-    .subscribe(peliculas => this.peliculas = peliculas);
+      .pipe(tap(console.log))
+      .subscribe(peliculas => this.peliculas = peliculas);
+  }
+
+   /**
+   * Ordena las películas por el título de manera alfabética (A-Z).
+   */
+   ordenarAZ(): void {
+    this.peliculas.sort((a, b) => a.titulo.localeCompare(b.titulo));
+  }
+
+  /**
+   * Ordena las películas por el título de manera descendente (Z-A).
+   */
+  ordenarZA(): void {
+    this.peliculas.sort((a, b) => b.titulo.localeCompare(a.titulo));
   }
 
   /**

@@ -34,10 +34,13 @@
           <td>
             <!-- Botón para editar película -->
             <button class="btn btn-warning btn-xs" (click)="abrirModal(pelicula)">
-              <i class="fa-solid fa-pen" aria-hidden="true"></i> Editar
+              <i class="fa-solid fa-pen" aria-hidden="true"></i>
             </button>
             <!-- Botón para eliminar película -->
-            <button class="btn btn-danger btn-xs"><i class="fa-solid fa-trash"></i></button>
+            <button class="btn btn-danger btn-xs" (click)="eliminarPelicula(pelicula.id)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+            
           </td>
         </tr>
       </tbody>

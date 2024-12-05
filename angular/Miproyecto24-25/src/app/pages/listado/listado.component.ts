@@ -34,6 +34,20 @@ export class ListadoComponent implements OnInit {
     });
   }
 
+  eliminarPelicula(id: string): void {
+    if (confirm('¿Estás seguro de que deseas eliminar esta película?')) {
+      this.peliculaservice.eliminarPelicula(id).subscribe({
+        next: () => {
+          this.cargarPeliculas();
+        },
+        error: (error) => {
+          console.error('Error al eliminar la película:', error);
+        }
+      });
+    }
+  }
+  
+
   cambiarPagina(pagina: number): void {
     this.pagina = pagina;
     this.cargarPeliculas();

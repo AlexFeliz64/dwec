@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Pelicula } from 'src/app/interfaces/peliculas.interfaces';
 import { PeliculasService } from 'src/app/services/peliculas.service';
+import { ValidacionService } from 'src/app/shared/services/validacion.service';
 
 @Component({
   selector: 'app-modal-agregar-pelicula',
@@ -9,22 +10,33 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
 })
 export class ModalAgregarPeliculaComponent implements OnInit {
   peliculaForm: FormGroup;
+  formGuardado: boolean = false;
 
-  @Input() peliculaEdicion: Pelicula | null = null;  // Para editar una película
+  @Input() peliculaEdicion: Pelicula | null = null;  
   @Output() peliculaAgregada = new EventEmitter<Pelicula>();
-  @Output() cerrarModal = new EventEmitter<void>();  // Evento para cerrar el modal
+  @Output() cerrarModal = new EventEmitter<void>();  
 
   constructor(
     private peliculaservice: PeliculasService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private validacionService: ValidacionService
   ) {
     this.peliculaForm = this.fb.group({
-      titulo: ['', Validators.required],
-      genero: ['', Validators.required],
-      duracion: ['', [Validators.required, Validators.min(1)]],
-      fecha_de_lanzamiento: ['', Validators.required],
+      titulo: ['', 
+        Validators.required],
+
+      genero: ['', 
+        Validators.required],
+
+      duracion: ['', 
+        [Validators.required, this.validacionService.validarDuracion]],
+
+      fecha_de_lanzamiento: 
+      ['', [Validators.required, this.validacionService.validarFecha]],
+      
       portada: [''],
     });
+    
   }
 
   ngOnInit(): void {
@@ -40,9 +52,19 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     }
   }
 
+  comprobarValidacion(){
+
+  }
+
   guardar(): void {
+
+    this.formGuardado = true;
+
+    this.peliculaForm.markAllAsTouched();
+
     if (this.peliculaForm.invalid) {
       alert('Por favor, completa todos los campos correctamente.');
+      return;
     } else {
       if (this.peliculaEdicion) {
         this.editarPelicula();
@@ -59,7 +81,7 @@ export class ModalAgregarPeliculaComponent implements OnInit {
         this.peliculaForm.reset();
         this.peliculaAgregada.emit(respuesta);
         alert('Película agregada exitosamente.');
-        this.cerrarModal.emit();  // Cerrar el modal después de agregar
+        this.cerrarModal.emit();  
       },
       error: (error) => {
         console.error('Error al guardar la película:', error);
@@ -73,9 +95,13 @@ export class ModalAgregarPeliculaComponent implements OnInit {
     this.peliculaservice.editarPelicula(this.peliculaEdicion!.id, peliculaEditada).subscribe({
       next: (respuesta) => {
         this.peliculaForm.reset();
-        this.peliculaAgregada.emit(respuesta);  // Emitir evento de película editada
+
+        // Emitir evento de película editada
+        this.peliculaAgregada.emit(respuesta);  
         alert('Película editada exitosamente.');
-        this.cerrarModal.emit();  // Cerrar el modal después de editar
+
+        // Cierra el modal después de editar
+        this.cerrarModal.emit();  
       },
       error: (error) => {
         console.error('Error al editar la película:', error);

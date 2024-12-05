@@ -17,27 +17,6 @@
       "id": 1
     },
     {
-      "titulo": "asaalecs",
-      "genero": "javichu",
-      "duracion": "dydy",
-      "fecha_de_lanzamiento": "dhdhd",
-      "id": 2
-    },
-    {
-      "titulo": "ew",
-      "genero": "werwer",
-      "duracion": "rwerwr",
-      "fecha_de_lanzamiento": "rgerge",
-      "id": 3
-    },
-    {
-      "titulo": "awdaw",
-      "genero": "",
-      "duracion": "",
-      "fecha_de_lanzamiento": "",
-      "id": 9
-    },
-    {
       "titulo": "ada",
       "genero": "awda",
       "duracion": "awd",
@@ -107,6 +86,22 @@
       "fecha_de_lanzamiento": "2024-12-02",
       "portada": "",
       "id": 18
+    },
+    {
+      "titulo": "sdfsd",
+      "genero": "sddsfds",
+      "duracion": -3,
+      "fecha_de_lanzamiento": "2024-12-10",
+      "portada": "",
+      "id": 19
+    },
+    {
+      "titulo": "hola",
+      "genero": "caracola",
+      "duracion": -3,
+      "fecha_de_lanzamiento": "2024-12-04",
+      "portada": "",
+      "id": 20
     }
   ],
   "users": [

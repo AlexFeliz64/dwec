@@ -111,4 +111,14 @@ export class PeliculasService {
   editarPelicula(id: string, pelicula: Pelicula): Observable<Pelicula> {
     return this.http.put<Pelicula>(`${URL}/peliculas/${id}`, pelicula);
   }
+
+  /**
+   * Elimina la pelicula por el id
+   * @param id 
+   * @returns la pelicula borrada
+   */
+  eliminarPelicula(id: string): Observable<void> {
+    return this.http.delete<void>(`${URL}/peliculas/${id}`);
+  }
+  
 }

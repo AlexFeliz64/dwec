@@ -11,7 +11,7 @@ const routes:Routes = [
   {path:'menuPeliculas', component:MenuPeliculasComponent},
   
   // Ruta para el listado en tabla
-  {path:'listado', component:ListadoComponent},
+  {path:'listado', component:ListadoComponent,},
   
   
   // Ruta para el id de la pelicula
